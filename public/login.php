@@ -28,6 +28,7 @@ $message = "Email ou mot de passe incorrect.";
 }
 }
 ?>
+<link rel="stylesheet" href="../assets/css/style.css">
 <!DOCTYPE html>
 <html lang="fr">
 <head>
