@@ -1,11 +1,8 @@
 <?php
+session_start();
+require_once "../config/db.php";
+require_once "../models/User.php";
 $message = "";
-// Utilisateur statique pour le test
-$staticUser = [
-"name" => "Test User",
-"email" => "test@test.com",
-"password" => "123456"
-];
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 $email = $_POST["email"] ?? "";
 $password = $_POST["password"] ?? "";
@@ -13,11 +10,21 @@ if (empty($email) || empty($password)) {
 $message = "Veuillez remplir tous les champs.";
 } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 $message = "Email invalide.";
-} elseif ($email === $staticUser["email"] && $password === $staticUser["password"]) {
-$message = "Connexion reussie. Bienvenue " . htmlspecialchars($staticUser["name"]) .
-".";
+} else {
+$database = new Database();
+$db = $database->connect();
+$userModel = new User($db);
+$user = $userModel->login($email, $password);
+if ($user) {
+$_SESSION["user_id"] = $user["id"];
+$_SESSION["user_name"] = $user["name"];
+$_SESSION["user_email"] = $user["email"];
+$_SESSION["user_role"] = $user["role"];
+header("Location: dashboard.php");
+exit;
 } else {
 $message = "Email ou mot de passe incorrect.";
+}
 }
 }
 ?>
