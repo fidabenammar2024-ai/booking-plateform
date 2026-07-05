@@ -1,15 +1,18 @@
-<link rel="stylesheet" href="../assets/css/style.css">
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-5<meta charset="UTF-8">
+<meta charset="UTF-8">
 <title>Booking Platform</title>
+<link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
-<h1>Bienvenue sur la plateforme de réservation sportive</h1>
+<div class="container">
+<h1>Bienvenue sur la plateforme de reservation sportive</h1>
+<p>Reservez facilement des terrains de football, basket et tennis en ligne.</p>
 <nav>
-<a href="register.php">Inscription</a> |
+<a href="register.php">Inscription</a>
 <a href="login.php">Connexion</a>
 </nav>
+</div>
 </body>
 </html>
