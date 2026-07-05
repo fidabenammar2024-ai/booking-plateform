@@ -1,4 +1,6 @@
 <?php
+require_once "../config/db.php";
+require_once "../models/User.php";
 $message = "";
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 $name = $_POST["name"] ?? "";
@@ -9,7 +11,18 @@ $message = "Veuillez remplir tous les champs.";
 } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 $message = "Email invalide.";
 } else {
-$message = "Compte créé avec succès pour : " . htmlspecialchars($email);
+$database = new Database();
+$db = $database->connect();
+$userModel = new User($db);
+$existingUser = $userModel->findByEmail($email);
+if ($existingUser) {
+$message = "Cet email existe deja.";
+} else {
+$created = $userModel->create($name, $email, $password);
+$message = $created
+? "Compte cree avec succes. Vous pouvez maintenant vous connecter."
+: "Erreur lors de la creation du compte.";
+}
 }
 }
 ?>
