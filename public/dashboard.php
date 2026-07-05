@@ -5,10 +5,10 @@ header("Location: login.php");
 exit;
 }
 ?>
-<link rel="stylesheet" href="../assets/css/style.css">
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+<link rel="stylesheet" href="../assets/css/style.css">
 <meta charset="UTF-8">
 <title>Tableau de bord</title>
 <link rel="stylesheet" href="../assets/css/style.css">

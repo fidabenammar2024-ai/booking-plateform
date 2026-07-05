@@ -26,10 +26,10 @@ $message = $created
 }
 }
 ?>
-<link rel="stylesheet" href="../assets/css/style.css">
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+<link rel="stylesheet" href="../assets/css/style.css">
 <meta charset="UTF-8">
 <title>Inscription</title>
 </head>
