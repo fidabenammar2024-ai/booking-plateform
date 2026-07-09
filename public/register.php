@@ -37,7 +37,7 @@ $message = $created
 <h1>Créer un compte</h1>
 <nav>
 <a href="index.php">Accueil</a> |
-<a href="login.php">Connexion</a>
+<a href="public/login.php">Connexion</a>
 </nav>
 <?php if (!empty($message)) : ?>
 <p><?php echo $message; ?></p>
