@@ -1,69 +1,146 @@
-* { box-sizing: border-box; }
+/* Réinitialisation de base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Arrière-plan sportif général */
 body {
-margin: 0;
-font-family: Arial, sans-serif;
-background: #f4f6f8;
-color: #222;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* Image de fond sportive libre de droits (Stade/Terrain) */
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), 
+                url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=1920') no-repeat center center/cover;
+    padding: 20px;
 }
-.container {
-width: 90%;
-max-width: 900px;
-margin: 40px auto;
-background: white;
-padding: 30px;
-border-radius: 12px;
-box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-h1 {
-color: #1f4e79;
-text-align: center;
-}
+
+/* Barre de navigation */
 nav {
-margin: 20px 0;
-text-align: center;
+    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    padding: 10px 20px;
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
+
 nav a {
-display: inline-block;
-margin: 5px;
-padding: 10px 15px;
-background: #1f4e79;
-color: white;
-text-decoration: none;
-border-radius: 6px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    margin: 0 10px;
+    transition: color 0.3s ease;
 }
-nav a:hover { background: #163b5c; }
+
+nav a:hover {
+    color: #4CAF50; /* Vert pelouse au survol */
+}
+
+/* Conteneur principal (Formulaire) */
+h1 {
+    color: #fff;
+    margin-bottom: 10px;
+    font-size: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
 form {
-max-width: 450px;
-margin: 20px auto;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 40px;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 400px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
 }
-label {
-display: block;
-margin-bottom: 6px;
-font-weight: bold;
+
+/* Blocs d'inputs */
+form div {
+    margin-bottom: 20px;
 }
-input, select {
-width: 100%;
-padding: 10px;
-margin-bottom: 15px;
-border: 1px solid #ccc;
-border-radius: 6px;
+
+form label {
+    display: block;
+    color: #fff;
+    margin-bottom: 8px;
+    font-weight: 500;
+    font-size: 0.95rem;
 }
-button {
-width: 100%;
-padding: 12px;
-background: #28a745;
-color: white;
-border: none;
-border-radius: 6px;
-cursor: pointer;
-font-size: 16px;
+
+form input {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
 }
-button:hover { background: #218838; }
-.message {
-max-width: 450px;
-margin: 15px auto;
-padding: 12px;
-background: #e8f4ff;
-border-left: 5px solid #1f4e79;
-border-radius: 5px;
+
+/* Effet au clic sur les inputs */
+form input:focus {
+    border-color: #4CAF50;
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 8px rgba(76, 175, 80, 0.5);
+}
+
+/* Bouton d'action principal (Style Sport / Dynamique) */
+button[type="submit"] {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    background: #4CAF50; /* Vert dynamique */
+    color: white;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.1s ease;
+    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
+}
+
+button[type="submit"]:hover {
+    background: #45a049;
+}
+
+button[type="submit"]:active {
+    transform: scale(0.98);
+}
+
+/* Style des messages d'erreur et de succès */
+p {
+    padding: 12px;
+    border-radius: 8px;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 15px;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+/* Classe d'erreur générique ou par texte */
+p[style*="color: green"], .success-msg {
+    background: rgba(76, 175, 80, 0.2);
+    color: #d4edda !important;
+    border: 1px solid rgba(76, 175, 80, 0.4);
+}
+
+/* Si vous affichez une erreur standard */
+p:not([style*="color: green"]) {
+    background: rgba(244, 67, 54, 0.2);
+    color: #f8d7da;
+    border: 1px solid rgba(244, 67, 54, 0.4);
 }
