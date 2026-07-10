@@ -35,7 +35,7 @@ $message = "Email ou mot de passe incorrect.";
 <meta charset="UTF-8">
 <title>Connexion</title>
 </head>
-<body>
+<body class="login-page">
 <h1>Connexion</h1>
 <nav>
 <a href="index.php">Accueil</a> |

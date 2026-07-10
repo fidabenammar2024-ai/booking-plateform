@@ -5,7 +5,7 @@
 <title>Booking Platform</title>
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body>
+<body class="home-page">
 <div class="container">
 <h1>Bienvenue sur la plateforme de reservation sportive</h1>
 <p>Reservez facilement des terrains de football, basket et tennis en ligne.</p>

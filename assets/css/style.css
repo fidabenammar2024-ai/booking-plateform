@@ -1,146 +1,375 @@
-/* Réinitialisation de base */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+/* Importation d'une police moderne et sportive via Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+* { 
+    box-sizing: border-box; 
 }
 
-/* Arrière-plan sportif général */
 body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif; /* Remplacement par une police plus propre qu'Arial */
+    background: #0b131a; /* Fond de secours très sombre */
+    color: #ffffff;
     min-height: 100vh;
+}
+
+/* =======================================================
+   DESIGN SPÉCIFIQUE POUR LA PAGE D'ACCUEIL (INDEX.PHP)
+   ======================================================= */
+body.home-page {
+    position: relative;
+    overflow-x: hidden;
+    /* On applique votre image de fond en assombrissant légèrement pour faire ressortir le texte */
+    background: linear-gradient(rgba(11, 19, 26, 0.4), rgba(11, 19, 26, 0.6)), 
+                url('../images/fond_acceuil.jpeg') no-repeat center center/cover;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    /* Image de fond sportive libre de droits (Stade/Terrain) */
-    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), 
-                url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=1920') no-repeat center center/cover;
-    padding: 20px;
 }
 
-/* Barre de navigation */
-nav {
-    margin-bottom: 20px;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(5px);
-    padding: 10px 20px;
-    border-radius: 30px;
+/* Conteneur principal en verre transparent (Glassmorphism) */
+body.home-page .container {
+    width: 90%;
+    max-width: 750px; /* Légèrement plus compact pour un effet carte élégant */
+    margin: 20px auto;
+    /* Fond blanc ultra-subtil et flouté (parfaitement transparent comme demandé) */
+    background: rgba(255, 255, 255, 0.12); 
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    padding: 50px 40px;
+    border-radius: 20px;
+    /* Bordure fine lumineuse pour accentuer l'effet de verre */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    text-align: center;
+}
+
+/* Titre principal - Harmonisé avec le thème sportif */
+body.home-page h1 {
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 2.5rem;
+    line-height: 1.2;
+    margin-bottom: 15px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Texte de description sous le titre */
+body.home-page p {
+    color: #e2e8f0; /* Blanc cassé/gris clair très lisible */
+    font-size: 1.1rem;
+    margin-bottom: 35px;
+    font-weight: 400;
+}
+
+/* Navigation / Zone des boutons */
+body.home-page nav {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Espace régulier entre les boutons */
+}
+
+/* Boutons de la page d'accueil (Design Moderne & Sportif) */
+body.home-page nav a {
+    display: inline-block;
+    padding: 14px 35px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 50px; /* Boutons arrondis style moderne */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Bouton Inscription : Vert Pelouse Lumineux */
+body.home-page nav a[href*="register"] {
+    background: linear-gradient(135deg, #28a745, #1e7e34);
+    color: white;
     border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-nav a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: 600;
-    margin: 0 10px;
-    transition: color 0.3s ease;
+body.home-page nav a[href*="register"]:hover {
+    background: linear-gradient(135deg, #218838, #155724);
+    transform: translateY(-3px); /* Petit effet de surélévation dynamique */
+    box-shadow: 0 8px 20px rgba(40, 167, 69, 0.4);
 }
 
-nav a:hover {
-    color: #4CAF50; /* Vert pelouse au survol */
+/* Bouton Connexion : Bleu Nuit / Cyan (assorti à la fumée et aux ombres du stade) */
+body.home-page nav a[href*="login"] {
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-/* Conteneur principal (Formulaire) */
+body.home-page nav a[href*="login"]:hover {
+    background: #ffffff;
+    color: #0b131a; /* Le texte devient sombre au survol */
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);
+}
+
+/* Effet au clic (Active) sur les deux boutons */
+body.home-page nav a:active {
+    transform: translateY(-1px);
+}
+
+
+/* =======================================================
+   LE RESTE DE VOS STYLES (Pour les formulaires de vos autres pages)
+   ======================================================= */
+.container {
+    width: 90%;
+    max-width: 900px;
+    margin: 40px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
 h1 {
-    color: #fff;
-    margin-bottom: 10px;
-    font-size: 2rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    color: #1f4e79;
+    text-align: center;
 }
 
 form {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    padding: 40px;
-    border-radius: 15px;
-    width: 100%;
-    max-width: 400px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+    max-width: 450px;
+    margin: 20px auto;
 }
 
-/* Blocs d'inputs */
-form div {
-    margin-bottom: 20px;
-}
-
-form label {
+label {
     display: block;
-    color: #fff;
-    margin-bottom: 8px;
-    font-weight: 500;
-    font-size: 0.95rem;
+    margin-bottom: 6px;
+    font-weight: bold;
+    color: #333;
 }
 
-form input {
+input, select {
     width: 100%;
-    padding: 12px 15px;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
     border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    background: rgba(255, 255, 255, 0.2);
-    color: #fff;
-    font-size: 1rem;
-    outline: none;
+    font-family: inherit;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: inherit;
+    transition: background 0.2s;
+}
+
+button:hover { background: #218838; }
+
+.message {
+    max-width: 450px;
+    margin: 15px auto;
+    padding: 12px;
+    background: #e8f4ff;
+    border-left: 5px solid #1f4e79;
+    border-radius: 5px;
+    color: #1f4e79;
+}
+/* =======================================================
+   DESIGN SPÉCIFIQUE POUR LA PAGE D'INSCRIPTION (REGISTER.PHP)
+   ======================================================= */
+body.register-page {
+    position: relative;
+    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    
+    /* On applique l'image de fond d'inscription avec le même effet tamisé pro */
+    background: linear-gradient(rgba(11, 19, 26, 0.7), rgba(11, 19, 26, 0.85)), 
+                url('../images/fond_inscription.jpeg') no-repeat center center/cover;
+}
+
+/* On applique le même effet de transparence (Glassmorphism) au conteneur d'inscription */
+body.register-page .container {
+    width: 90%;
+    max-width: 500px; /* Un peu plus étroit que l'accueil pour un formulaire parfait */
+    margin: 20px auto;
+    background: rgba(255, 255, 255, 0.1); 
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    padding: 40px 30px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* Couleurs des textes de l'inscription pour aller avec le fond sombre */
+body.register-page h1 {
+    color: #ffffff;
+    font-weight: 700;
+    margin-bottom: 25px;
+}
+
+body.register-page label {
+    color: #e2e8f0;
+    font-weight: 600;
+    text-align: left;
+}
+
+/* Style des champs de saisie transparents et modernes */
+body.register-page input {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
     transition: all 0.3s ease;
 }
 
-/* Effet au clic sur les inputs */
-form input:focus {
-    border-color: #4CAF50;
-    background: rgba(255, 255, 255, 0.3);
-    box-shadow: 0 0 8px rgba(76, 175, 80, 0.5);
+body.register-page input:focus {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: #28a745; /* Devient vert au clic */
+    outline: none;
+    box-shadow: 0 0 10px rgba(40, 167, 69, 0.5);
 }
 
-/* Bouton d'action principal (Style Sport / Dynamique) */
-button[type="submit"] {
-    width: 100%;
-    padding: 14px;
-    border: none;
-    border-radius: 8px;
-    background: #4CAF50; /* Vert dynamique */
+/* Liens de navigation sur la page d'inscription */
+body.register-page nav a {
+    background: rgba(255, 255, 255, 0.1);
     color: white;
-    font-size: 1.1rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: background 0.3s ease, transform 0.1s ease;
-    box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 8px 20px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    margin: 0 5px;
+    display: inline-block;
+    transition: all 0.3s;
 }
 
-button[type="submit"]:hover {
-    background: #45a049;
+body.register-page nav a:hover {
+    background: #ffffff;
+    color: #0b131a;
+}
+/* =======================================================
+   DESIGN SPÉCIFIQUE POUR LA PAGE DE CONNEXION (LOGIN.PHP)
+   ======================================================= */
+body.login-page {
+    position: relative;
+    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(rgba(11, 19, 26, 0.65), rgba(11, 19, 26, 0.85)), 
+                url('../images/fond_login.jpeg') no-repeat center center/cover;
+    padding: 30px;
 }
 
-button[type="submit"]:active {
-    transform: scale(0.98);
-}
-
-/* Style des messages d'erreur et de succès */
-p {
-    padding: 12px;
-    border-radius: 8px;
-    max-width: 400px;
+/* Grille principale à deux colonnes bien espacées */
+body.login-page .container {
     width: 100%;
-    text-align: center;
-    margin-bottom: 15px;
+    max-width: 1000px; /* Légèrement élargi pour donner de l'air */
+    margin: auto;
+    background: transparent;
+    box-shadow: none;
+    border: none;
+    padding: 0;
+    
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 60px; /* Plus grand espace entre la partie gauche et le formulaire */
+}
+
+/* --- CÔTÉ GAUCHE : TEXTE ET LIENS --- */
+body.login-page .login-left {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 25px; /* Espace généreux entre le titre Connexion et la navigation */
+}
+
+body.login-page h1 {
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 3.8rem; 
+    margin: 0;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+    text-transform: capitalize; /* "Connexion" en minuscules avec initiale Majuscule */
+    letter-spacing: 0.5px;
+}
+
+body.login-page nav {
+    margin: 0;
+    display: flex;
+    justify-content: flex-start;
+    gap: 25px; /* Grand espace entre le bouton Accueil et Inscription */
+}
+
+body.login-page nav a {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 12px 28px; /* Boutons plus grands et aérés */
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+body.login-page nav a:hover {
+    background: #ffffff;
+    color: #0b131a;
+    transform: translateY(-2px);
+}
+
+/* --- CÔTÉ DROIT : LE FORMULAIRE ULTRA-ORGANISÉ --- */
+body.login-page form {
+    width: 100%;
+    max-width: 440px;
+    margin: 0 0 0 auto; 
+    background: rgba(255, 255, 255, 0.06); 
+    backdrop-filter: blur(25px); /* Flou plus prononcé pour l'élégance */
+    -webkit-backdrop-filter: blur(25px);
+    
+    padding: 50px 40px; /* Plus d'espace blanc intérieur (haut/bas et côtés) */
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+    text-align: left;
+}
+
+/* Blocs des champs (Email / Mot de passe) */
+body.login-page form div {
+    margin-bottom: 28px; /* Plus d'espace entre le champ Email et le champ Mot de passe */
+}
+
+body.login-page label {
+    display: block;
+    color: #e2e8f0;
     font-weight: 600;
     font-size: 0.95rem;
+    margin-bottom: 12px; /* Plus d'espace entre le texte et la zone de saisie */
+    letter-spacing: 0.5px;
 }
 
-/* Classe d'erreur générique ou par texte */
-p[style*="color: green"], .success-msg {
-    background: rgba(76, 175, 80, 0.2);
-    color: #d4edda !important;
-    border: 1px solid rgba(76, 175, 80, 0.4);
+body.login-page input {
+    width: 100%;
+    padding: 16px 18px; /* Saisie plus large et confortable */
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    color: #ffffff;
+    font-size: 1rem;
+    transition: all 0.3s ease;
 }
 
-/* Si vous affichez une erreur standard */
-p:not([style*="color: green"]) {
-    background: rgba(244, 67, 54, 0.2);
-    color: #f8d7da;
-    border: 1px solid rgba(244, 67, 54, 0.4);
-}
+body.login-page input:focus {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: #28a}

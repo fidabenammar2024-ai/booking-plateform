@@ -33,7 +33,7 @@ $message = $created
 <meta charset="UTF-8">
 <title>Inscription</title>
 </head>
-<body>
+<body class="register-page">
 <h1>Créer un compte</h1>
 <nav>
 <a href="index.php">Accueil</a> |
