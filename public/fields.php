@@ -18,7 +18,7 @@ $fields = $fieldModel->getAll();
 <title>Liste des terrains</title>
 <link rel="stylesheet" href="../assets/css/style.css">
 </head>
-<body>
+<body class="fields-page">
 <div class="container">
 <h1>Terrains disponibles</h1>
 <nav>

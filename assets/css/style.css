@@ -373,3 +373,147 @@ body.login-page input {
 body.login-page input:focus {
     background: rgba(255, 255, 255, 0.15);
     border-color: #28a}
+    
+/* =======================================================
+   DESIGN SPÉCIFIQUE POUR LA LISTE DES TERRAINS (FIELDS.PHP)
+   ======================================================= */
+body.fields-page {
+    position: relative;
+    overflow-x: hidden;
+    min-height: 100vh;
+    /* Application de votre image fond_fields.jpeg avec le voile sombre pro */
+    background: linear-gradient(rgba(11, 19, 26, 0.7), rgba(11, 19, 26, 0.85)), 
+                url('../images/fond_fields.jpeg') no-repeat center center/cover;
+    padding: 40px 20px;
+}
+
+/* On réutilise le grand conteneur en verre pour englober toute la page */
+body.fields-page .container {
+    width: 100%;
+    max-width: 1100px; /* Plus large pour afficher plusieurs terrains côte à côte */
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 40px;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+body.fields-page h1 {
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Barre de navigation centrée et espacée */
+body.fields-page nav {
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+body.fields-page nav a {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 10px 24px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+body.fields-page nav a:hover {
+    background: #ffffff;
+    color: #0b131a;
+    transform: translateY(-2px);
+}
+
+/* --- GRILLE DES TERRAINS (Affichage moderne) --- */
+body.fields-page .fields-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Aligne 3 ou 4 terrains par ligne selon l'écran */
+    gap: 25px; /* Espace régulier entre les cartes de terrain */
+    margin-top: 20px;
+}
+
+/* Carte de terrain individuelle */
+body.fields-page .field-card {
+    background: rgba(255, 255, 255, 0.06); /* Un verre un peu plus distinct pour chaque carte */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 25px;
+    text-align: left; /* Infos alignées à gauche */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Effet de survol sur une carte de terrain */
+body.fields-page .field-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+body.fields-page .field-card h2 {
+    color: #ffffff;
+    font-size: 1.4rem;
+    margin: 0 0 15px 0;
+    font-weight: 600;
+}
+
+body.fields-page .field-card p {
+    color: #cbd5e1; /* Gris clair */
+    font-size: 0.95rem;
+    margin: 0 0 10px 0;
+}
+
+body.fields-page .field-card p strong {
+    color: #ffffff; /* Met en valeur les étiquettes Sport, Lieu, Prix */
+    font-weight: 600;
+}
+
+/* Bouton Réserver spécifique aux cartes */
+body.fields-page .field-card .btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 12px;
+    background: linear-gradient(135deg, #28a745, #1e7e34); /* Vert pelouse dynamique */
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 15px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.2);
+}
+
+body.fields-page .field-card .btn:hover {
+    background: linear-gradient(135deg, #218838, #155724);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(40, 167, 69, 0.4);
+}
+
+/* Message si aucun terrain n'est trouvé */
+body.fields-page .message {
+    background: rgba(255, 255, 255, 0.05);
+    color: #cbd5e1;
+    border: 1px dashed rgba(255, 255, 255, 0.2);
+    padding: 30px;
+    border-radius: 12px;
+    font-size: 1.1rem;
+}
