@@ -517,3 +517,64 @@ body.fields-page .message {
     border-radius: 12px;
     font-size: 1.1rem;
 }
+ /* =======================================================
+   DESIGN SPÉCIFIQUE POUR LE TABLEAU DE BORD (DASHBOARD.PHP)
+   ======================================================= */
+body.dashboard-page {
+    position: relative;
+    overflow-x: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(rgba(11, 19, 26, 0.75), rgba(11, 19, 26, 0.9)), 
+                url('../images/fond_dashboard.jpeg') no-repeat center center/cover;
+}
+
+body.dashboard-page .container {
+    width: 90%;
+    max-width: 600px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    padding: 60px 40px;
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+    text-align: center;
+}
+
+body.dashboard-page h1 {
+    color: #ffffff;
+    font-size: 2.8rem;
+    margin-bottom: 15px;
+}
+
+body.dashboard-page p {
+    color: #e2e8f0;
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+}
+
+/* Navigation organisée en grille simple */
+body.dashboard-page nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+body.dashboard-page nav a {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 15px;
+    border-radius: 15px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+body.dashboard-page nav a:hover {
+    background: #28a745;
+    transform: translateY(-3px);
+}
