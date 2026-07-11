@@ -21,6 +21,7 @@ exit;
 <a href="index.php">Accueil</a>
 <a href="fields.php">Terrains</a>
 <a href="logout.php">Deconnexion</a>
+<a href="fields.php">Terrains</a>
 </nav>
 </div>
 </body>
