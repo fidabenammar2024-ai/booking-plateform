@@ -45,7 +45,7 @@ $fields = $fieldModel->getAll();
 <strong>Prix :</strong>
 <?php echo htmlspecialchars($field["price"]); ?> €
 </p>
-<a class="btn" href="#">
+<a class="btn" href="reserve.php?field_id=<?php echo $field['id']; ?>">
 Réserver
 </a>
 </div>
