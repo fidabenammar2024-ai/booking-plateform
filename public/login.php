@@ -38,8 +38,8 @@ $message = "Email ou mot de passe incorrect.";
 <body class="login-page">
 <h1>Connexion</h1>
 <nav>
-<a href="index.php">Accueil</a> |
-<a href="public/register.php">Inscription</a>
+<a href="../index.php">Accueil</a> |
+<a href="register.php">Inscription</a>
 </nav>
 <?php if (!empty($message)) : ?>
 <p><?php echo $message; ?></p>
