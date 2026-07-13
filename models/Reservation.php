@@ -3,6 +3,28 @@ class Reservation
 {
 private $conn;
 private $table = "reservations";
+public function getByUserId($userId)
+{
+$sql = "SELECT
+reservations.id,
+reservations.date,
+reservations.start_time,
+reservations.end_time,
+reservations.status,
+fields.name AS field_name,
+fields.sport_type,
+fields.location,
+fields.price
+FROM " . $this->table . "
+INNER JOIN fields ON reservations.field_id = fields.id
+WHERE reservations.user_id = :user_id
+ORDER BY reservations.date DESC, reservations.start_time DESC";
+$stmt = $this->conn->prepare($sql);
+$stmt->execute([
+":user_id" => $userId
+]);
+return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 public function __construct($db)
 {
 $this->conn = $db;
