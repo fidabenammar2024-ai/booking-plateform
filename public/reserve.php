@@ -56,7 +56,7 @@ réservations.";
 <title>Réserver un terrain</title>
 <link rel="stylesheet" href="../assets/css/style.css">
 </head>
-<body>
+<body class="reserve-page">
 <div class="container">
 <h1>Réserver un terrain</h1>
 <nav>
