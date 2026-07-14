@@ -18,7 +18,7 @@ $reservations = $reservationModel->getByUserId($_SESSION["user_id"]);
 <title>Mes réservations</title>
 <link rel="stylesheet" href="../assets/css/style.css">
 </head>
-<body>
+<body class="my-reservations-page">
 <div class="container">
 <h1>Mes réservations</h1>
 <nav>

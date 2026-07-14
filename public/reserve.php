@@ -44,6 +44,10 @@ $message = "Erreur lors de la création de la réservation.";
 }
 }
 }
+if ($created) {
+$message = "Réservation créée avec succès. Vous pouvez consulter vos
+réservations.";
+}
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -63,6 +67,9 @@ $message = "Erreur lors de la création de la réservation.";
 </nav>
 <?php if (!empty($message)) : ?>
 <p class="message"><?php echo $message; ?></p>
+<?php endif; ?>
+<?php if ($message ==="Réservation créée avec succès. Vous pouvez consulter vos réservations.") : ?>
+<a class="btn" href="my_reservations.php">Voir mes réservations</a>
 <?php endif; ?>
 <form method="POST" action="">
 <label for="date">Date :</label>

@@ -22,6 +22,7 @@ if (!isset($_SESSION["user_id"])) {
             <a href="../index.php">Accueil</a>
             <a href="fields.php">Voir les terrains</a>
             <a href="logout.php">Déconnexion</a>
+            <a href="my_reservations.php" class="btn secondary">Mes réservations</a>
         </nav>
     </div>
 
