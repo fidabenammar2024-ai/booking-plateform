@@ -48,7 +48,7 @@ $fields = $fieldModel->getAll();
                             <strong>Prix :</strong>
                             <?php echo htmlspecialchars($field["price"]); ?> €
                         </p>
-                      
+
                         <button class="btn open-reservation-modal"
                             data-field-id="<?php echo $field['id']; ?>"
                             data-field-name="<?php echo htmlspecialchars($field['name']); ?>">
@@ -59,8 +59,25 @@ $fields = $fieldModel->getAll();
             </div>
         <?php endif; ?>
     </div>
+    <div id="reservationModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Réserver un terrain</h2>
+            <p id="selectedFieldName"></p>
+            <form method="POST" action="reserve.php" id="reservationForm">
+                <input type="hidden" name="field_id" id="fieldId">
+                <label for="date">Date :</label>
+                <input type="date" id="date" name="date">
+                <label for="start_time">Heure de début :</label>
+                <input type="time" id="start_time" name="start_time">
+                <label for="end_time">Heure de fin :</label>
+                <input type="time" id="end_time" name="end_time">
+                <button type="submit">Confirmer la réservation</button>
+            </form>
+        </div>
+    </div>
     <script src="../assets/js/script.js"></script>
-    
+
 </body>
 
 </html>
