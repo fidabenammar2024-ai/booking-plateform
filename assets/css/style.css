@@ -517,66 +517,71 @@ body.fields-page .message {
     border-radius: 12px;
     font-size: 1.1rem;
 }
- /* =======================================================
-   DESIGN SPÉCIFIQUE POUR LE TABLEAU DE BORD (DASHBOARD.PHP)
-   ======================================================= */
-body.dashboard-page {
-    position: relative;
-    overflow-x: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background: linear-gradient(rgba(11, 19, 26, 0.75), rgba(11, 19, 26, 0.9)), 
-                url('../images/fond_dashboard.jpeg') no-repeat center center/cover;
+ .dashboard-layout {
+display: flex;
+min-height: 100vh;
+background: #f4f6f8;
 }
-
-body.dashboard-page .container {
-    width: 90%;
-    max-width: 600px;
-    background: rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
-    padding: 60px 40px;
-    border-radius: 30px;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
-    text-align: center;
+.sidebar {
+width: 240px;
+background: #1f2933;
+color: white;
+padding: 25px;
 }
-
-body.dashboard-page h1 {
-    color: #ffffff;
-    font-size: 2.8rem;
-    margin-bottom: 15px;
+.sidebar h2 {
+margin-bottom: 30px;
 }
-
-body.dashboard-page p {
-    color: #e2e8f0;
-    font-size: 1.2rem;
-    margin-bottom: 40px;
+.sidebar nav {
+display: flex;
+flex-direction: column;
+gap: 12px;
 }
-
-/* Navigation organisée en grille simple */
-body.dashboard-page nav {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
+.sidebar nav a {
+color: white;
+text-decoration: none;
+padding: 12px;
+border-radius: 8px;
+background: #323f4b;
 }
-
-body.dashboard-page nav a {
-    background: rgba(255, 255, 255, 0.1);
-    color: #ffffff;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 15px;
-    border-radius: 15px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s ease;
+.sidebar nav a:hover {
+background: #28a745;
 }
-
-body.dashboard-page nav a:hover {
-    background: #28a745;
-    transform: translateY(-3px);
+.main-content {
+flex: 1;
+padding: 25px;
+}
+.topbar {
+display: flex;
+justify-content: space-between;
+align-items: center;
+background: white;
+padding: 15px 20px;
+border-radius: 12px;
+margin-bottom: 25px;
+}
+.logout-btn {
+background: #dc3545;
+color: white;
+text-decoration: none;
+padding: 10px 14px;
+border-radius: 8px;
+}
+.dashboard-card {
+background: white;
+padding: 30px;
+border-radius: 12px;
+}
+@media (max-width: 700px) {
+.dashboard-layout {
+flex-direction: column;
+}
+.sidebar {
+width: 100%;
+}
+.topbar {
+flex-direction: column;
+gap: 10px;
+}
 }
 .reservations-list {
 display: grid;
@@ -603,4 +608,28 @@ margin: 8px 0;
 .reservations-list {
 grid-template-columns: repeat(2, 1fr);
 }
+}
+.modal {
+display: none;
+position: fixed;
+z-index: 1000;
+inset: 0;
+background: rgba(0, 0, 0, 0.6);
+}
+.modal-content {
+background: white;
+color: #222;
+width: 90%;
+max-width: 450px;
+margin: 80px auto;
+padding: 25px;
+border-radius: 12px;
+position: relative;
+}
+.close-modal {
+position: absolute;
+right: 18px;
+top: 12px;
+font-size: 26px;
+cursor: pointer;
 }
