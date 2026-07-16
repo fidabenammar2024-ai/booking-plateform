@@ -25,7 +25,6 @@ $fields = $fieldModel->getAll();
     <div class="container">
         <h1>Terrains disponibles</h1>
         <nav>
-            <a href="../index.php">Accueil</a>
             <a href="dashboard.php">Tableau de bord</a>
             <a href="logout.php">Déconnexion</a>
         </nav>
@@ -58,7 +57,9 @@ $fields = $fieldModel->getAll();
                 <?php endforeach; ?>
             </div>
         <?php endif; ?>
+    
     </div>
+     <script src="../assets/js/script.js"></script>
     <div id="reservationModal" class="modal">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
@@ -76,7 +77,7 @@ $fields = $fieldModel->getAll();
             </form>
         </div>
     </div>
-    <script src="../assets/js/script.js"></script>
+   
 
 </body>
 
