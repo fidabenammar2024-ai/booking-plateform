@@ -59,7 +59,7 @@ $fields = $fieldModel->getAll();
         <?php endif; ?>
     
     </div>
-     <script src="../assets/js/script.js"></script>
+    
     <div id="reservationModal" class="modal">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
@@ -77,8 +77,9 @@ $fields = $fieldModel->getAll();
             </form>
         </div>
     </div>
-   
 
+   
+<script src="../assets/js/script.js"></script>
 </body>
 
 </html>
