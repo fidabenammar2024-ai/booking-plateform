@@ -16,11 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $date = $_POST["date"] ?? "";
     $startTime = $_POST["start_time"] ?? "";
     $endTime = $_POST["end_time"] ?? "";
-    if (empty($date) || empty($startTime) || empty($endTime)) {
-        $message = "Veuillez remplir tous les champs.";
-    } elseif ($startTime >= $endTime) {
-        $message = "L'heure de fin doit être supérieure à l'heure de début.";
-    } elseif (empty($fieldId) || empty($date) || empty($startTime) || empty($endTime)) {
+    if (empty($fieldId) || empty($date) || empty($startTime) || empty($endTime)) {
         $message = "Veuillez remplir tous les champs.";
     } elseif ($date < date("Y-m-d")) {
         $message = "La date de réservation ne peut pas être dans le passé.";
@@ -99,5 +95,5 @@ réservations.";
 
 </html>
 <?php if (!empty($message)) : ?>
-<p class="message"><?php echo htmlspecialchars($message); ?></p>
+    <p class="message"><?php echo htmlspecialchars($message); ?></p>
 <?php endif; ?>
