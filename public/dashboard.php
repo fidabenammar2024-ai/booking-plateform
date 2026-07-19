@@ -1,10 +1,15 @@
 <?php
 session_start();
+
 if (!isset($_SESSION["user_id"])) {
     header("Location: login.php");
     exit;
 }
+
+$pageTitle = "Tableau de bord";
+$activePage = "dashboard";
 ?>
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -16,30 +21,52 @@ if (!isset($_SESSION["user_id"])) {
 
 <body>
     <div class="dashboard-layout">
-        <aside class="sidebar">
-            <h2>Booking</h2>
-            <nav>
-                <a href="dashboard.php">Dashboard</a>
-                <a href="fields.php">Voir les terrains</a>
-                <a href="my_reservations.php">Mes réservations</a>
-            </nav>
-        </aside>
+
+        <?php require_once "../views/layout/sidebar.php"; ?>
+
         <main class="main-content">
-            <header class="topbar">
-                <p>Bonjour, <?php echo htmlspecialchars($_SESSION["user_name"]); ?>
-                    👋</p>
-                <a href="logout.php" class="logout-btn">Déconnexion</a>
-            </header>
+
+            <?php require_once "../views/layout/topbar.php"; ?>
+
             <section class="dashboard-card">
                 <h1>Tableau de bord</h1>
-                <p>
+
+                <p class="dashboard-intro">
                     Bienvenue dans votre espace utilisateur.
-                    Vous pouvez consulter les terrains disponibles et suivre vos
-                    réservations.
+                    Vous pouvez consulter les terrains disponibles et suivre vos réservations.
                 </p>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Mes réservations</h3>
+                        <p>3</p>
+                    </div>
+
+                    <div class="stat-card">
+                        <h3>Réservations à venir</h3>
+                        <p>2</p>
+                    </div>
+
+                    <div class="stat-card">
+                        <h3>Terrains disponibles</h3>
+                        <p>3</p>
+                    </div>
+                </div>
+
+                <div class="quick-actions">
+                    <h2>Que souhaitez-vous faire ?</h2>
+
+                    <div class="action-buttons">
+                        <a href="fields.php" class="action-btn primary">Voir les terrains</a>
+                        <a href="my_reservations.php" class="action-btn secondary">Mes réservations</a>
+                    </div>
+                </div>
             </section>
+
         </main>
     </div>
+
+    <script src="../assets/js/script.js"></script>
 </body>
 
 </html>

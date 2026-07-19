@@ -372,7 +372,9 @@ body.login-page input {
 
 body.login-page input:focus {
     background: rgba(255, 255, 255, 0.15);
-    border-color: #28a}
+    border-color: #28a745;
+    outline: none;
+}
     
 /* =======================================================
    DESIGN SPÉCIFIQUE POUR LA LISTE DES TERRAINS (FIELDS.PHP)
@@ -567,9 +569,10 @@ padding: 10px 14px;
 border-radius: 8px;
 }
 .dashboard-card {
-background: white;
-padding: 30px;
-border-radius: 12px;
+    background: white;
+    padding: 30px;
+    color: #222;
+    border-radius: 12px;
 }
 @media (max-width: 700px) {
 .dashboard-layout {
@@ -632,4 +635,386 @@ right: 18px;
 top: 12px;
 font-size: 26px;
 cursor: pointer;
+}
+/* ===============================
+   Cards terrains - nouveau design
+   =============================== */
+
+.fields-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+    margin-top: 30px;
+}
+
+.field-card {
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    color: #1f2933;
+    border-radius: 18px;
+    padding: 24px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.field-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: linear-gradient(90deg, #28a745, #1f7a8c);
+}
+
+.field-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 35px rgba(15, 23, 42, 0.15);
+}
+
+.field-card h2 {
+    color: #102a43;
+    font-size: 1.3rem;
+    margin: 10px 0 18px;
+    font-weight: 700;
+}
+
+.field-card p {
+    color: #52606d;
+    margin: 10px 0;
+    font-size: 0.95rem;
+}
+
+.field-card strong {
+    color: #243b53;
+}
+
+.field-card .sport-badge {
+    display: inline-block;
+    background: #e6f4ea;
+    color: #1e7e34;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.field-card .price {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #1f7a8c;
+    margin: 18px 0;
+}
+
+.field-card .btn {
+    width: 100%;
+    margin-top: 15px;
+    padding: 13px;
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.field-card .btn:hover {
+    background: #218838;
+    transform: translateY(-2px);
+}
+
+/* ===============================
+   Cards réservations - nouveau design
+   =============================== */
+
+.reservations-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+    margin-top: 30px;
+}
+
+.reservation-card {
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    color: #1f2933;
+    border-radius: 18px;
+    padding: 24px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.reservation-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6px;
+    background: linear-gradient(90deg, #1f7a8c, #28a745);
+}
+
+.reservation-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 35px rgba(15, 23, 42, 0.15);
+}
+
+.reservation-card h2 {
+    color: #102a43;
+    font-size: 1.3rem;
+    margin: 12px 0 18px;
+    font-weight: 700;
+}
+
+.reservation-card p {
+    color: #52606d;
+    margin: 10px 0;
+    font-size: 0.95rem;
+}
+
+.reservation-card strong {
+    color: #243b53;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-top: 10px;
+}
+
+.status-pending {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.status-confirmed {
+    background: #d4edda;
+    color: #155724;
+}
+
+.status-cancelled {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+/* ===============================
+   Topbar dashboard améliorée
+   =============================== */
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #ffffff;
+    padding: 16px 24px;
+    border-radius: 16px;
+    margin-bottom: 25px;
+    box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+}
+
+.topbar-left h3 {
+    margin: 0;
+    color: #102a43;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.topbar-left span {
+    color: #627d98;
+    font-size: 0.9rem;
+}
+
+.profile-menu {
+    position: relative;
+}
+
+.profile-button {
+    width: auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #f8fafc;
+    color: #102a43;
+    border: 1px solid #e5e7eb;
+    padding: 8px 14px;
+    border-radius: 999px;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 600;
+}
+
+.profile-button:hover {
+    background: #eef2f7;
+}
+
+.profile-avatar {
+    width: 34px;
+    height: 34px;
+    background: #28a745;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+}
+
+.profile-name {
+    font-size: 0.95rem;
+}
+
+.profile-dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 52px;
+    width: 220px;
+    background: white;
+    border-radius: 14px;
+    box-shadow: 0 15px 35px rgba(15, 23, 42, 0.15);
+    border: 1px solid #e5e7eb;
+    padding: 12px;
+    z-index: 100;
+}
+
+.profile-dropdown.show {
+    display: block;
+}
+
+.profile-dropdown-title {
+    margin: 0 0 10px;
+    padding: 10px;
+    color: #102a43;
+    font-weight: 700;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.dropdown-logout {
+    display: block;
+    padding: 10px;
+    color: #dc3545;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.dropdown-logout:hover {
+    background: #f8d7da;
+}
+
+@media (max-width: 700px) {
+    .topbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .profile-menu {
+        width: 100%;
+    }
+
+    .profile-button {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .profile-dropdown {
+        width: 100%;
+        left: 0;
+        right: auto;
+    }
+}
+
+.dashboard-intro {
+    color: #52606d;
+    text-align: center;
+    font-size: 1rem;
+    margin-bottom: 30px;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    margin: 30px 0;
+}
+
+.stat-card {
+    background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+    border: 1px solid #e5e7eb;
+    border-radius: 18px;
+    padding: 22px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+}
+
+.stat-card h3 {
+    color: #52606d;
+    font-size: 0.95rem;
+    margin-bottom: 12px;
+}
+
+.stat-card p {
+    color: #102a43;
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.quick-actions {
+    margin-top: 35px;
+    text-align: center;
+}
+
+.quick-actions h2 {
+    color: #102a43;
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.action-btn {
+    display: inline-block;
+    padding: 13px 22px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.action-btn.primary {
+    background: #28a745;
+    color: white;
+}
+
+.action-btn.secondary {
+    background: #1f7a8c;
+    color: white;
+}
+
+.action-btn:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+.sidebar nav a.active {
+    background: #28a745;
+    color: white;
+    font-weight: 700;
 }
