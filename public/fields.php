@@ -41,6 +41,7 @@ if (isset($_GET["error"])) {
 <head>
     <meta charset="UTF-8">
     <title>Liste des terrains</title>
+        <link rel="icon" type="image/png" href="../assets/images/terraingo-logo.png">
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 

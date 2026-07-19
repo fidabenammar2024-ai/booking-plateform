@@ -15,7 +15,8 @@ $activePage = "dashboard";
 
 <head>
     <meta charset="UTF-8">
-    <title>Dashboard - Booking Platform</title>
+    <title>TerrainGo</title>
+    <link rel="icon" type="image/png" href="../assets/images/terraingo-logo.png">
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 

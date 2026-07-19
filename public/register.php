@@ -33,6 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <link rel="stylesheet" href="../assets/css/style.css">
     <meta charset="UTF-8">
     <title>Inscription</title>
+    <link rel="icon" type="image/png" href="../assets/images/terraingo-logo.png">
 </head>
 
 <body class="register-page">
@@ -41,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <a href="../index.php">Accueil</a> |
         <a href="login.php">Connexion</a>
     </nav>
-    <?php if (!empty($message)) : ?>
+    <?php if (!empty($message)): ?>
         <p><?php echo $message; ?></p>
     <?php endif; ?>
     <form method="POST" action="">

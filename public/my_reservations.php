@@ -28,6 +28,7 @@ if (isset($_GET["success"]) && $_GET["success"] === "reservation_created") {
 <head>
     <meta charset="UTF-8">
     <title>Mes réservations</title>
+        <link rel="icon" type="image/png" href="../assets/images/terraingo-logo.png">
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 
