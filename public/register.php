@@ -38,8 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <body class="auth-page">
     <?php if (!empty($message)) : ?>
-        <div class="toast <?php echo str_contains($message, 'succès') ? 'toast-
-success' : 'toast-error'; ?>">
+        <div class="toast <?php echo str_contains($message, 'succes') ? 'toast-success' : 'toast-error'; ?>">
             <?php echo htmlspecialchars($message); ?>
         </div>
     <?php endif; ?>
@@ -52,8 +51,7 @@ success' : 'toast-error'; ?>">
             </div>
             <form method="POST" action="">
                 <label for="name">Nom</label>
-                <input type="text" id="name" name="name" placeholder="Votre
-nom">
+                <input type="text" id="name" name="name" placeholder="Votre nom">
                 <label for="email">Email</label>
                 <input type="email" id="email" name="email"
                     placeholder="exemple@email.com">
