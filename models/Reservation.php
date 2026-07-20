@@ -3,6 +3,8 @@ class Reservation
 {
     private $conn;
     private $table = "reservations";
+    public function countByUserId($userId) {}
+    public function countUpcomingByUserId($userId) {}
 
     public function getByUserId($userId)
     {
@@ -30,6 +32,7 @@ class Reservation
     {
         $this->conn = $db;
     }
+
     public function isAvailable($fieldId, $date, $startTime, $endTime)
     {
         $sql = "SELECT COUNT(*) as total

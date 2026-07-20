@@ -358,6 +358,14 @@ button:hover {
 .toast-error {
   background: #dc3545;
 }
+@keyframes slideIn {
+from { transform: translateX(120%); opacity: 0; }
+to { transform: translateX(0); opacity: 1; }
+}
+@keyframes fadeOut {
+to { opacity: 0; visibility: hidden; }
+}
+
 
 /* =======================================================
    STRUCTURE D'AFFICHAGE DU DASHBOARD CLIENT / ADMIN

@@ -1,6 +1,7 @@
 <?php
 session_start();
 $activePage = 'reservations';
+$pageTitle = "Mes réservations";
 if (!isset($_SESSION["user_id"])) {
     header("Location: login.php");
     exit;
@@ -28,7 +29,7 @@ if (isset($_GET["success"]) && $_GET["success"] === "reservation_created") {
 <head>
     <meta charset="UTF-8">
     <title>Mes réservations</title>
-        <link rel="icon" type="image/png" href="../assets/images/terraingo-logo.png">
+    <link rel="icon" type="image/png" href="../assets/images/terraingo-logo.png">
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 
@@ -53,6 +54,16 @@ if (isset($_GET["success"]) && $_GET["success"] === "reservation_created") {
                 <?php if (empty($reservations)): ?>
                     <p class="message">Vous n’avez aucune réservation pour le moment.</p>
                 <?php else: ?>
+                    <form method="GET" class="filter-form">
+                        <label for="sport">Filtrer par status:</label>
+                        <select name="sport" id="sport">
+                            <option value="">Tous</option>
+                            <option value="football">pending</option>
+                            <option value="basket">confirmed</option>
+                            <option value="tennis">cancelled</option>
+                        </select>
+                        <button type="submit">Filtrer</button>
+                    </form>
 
                     <div class="reservations-list">
                         <?php foreach ($reservations as $reservation): ?>
@@ -96,7 +107,8 @@ if (isset($_GET["success"]) && $_GET["success"] === "reservation_created") {
 
         </main>
     </div>
-
+    <?php require_once __DIR__ . "/../views/layout/footer.php"; ?>
+    <script src="../assets/js/script.js"></script>
 </body>
 
 </html>

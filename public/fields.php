@@ -41,7 +41,7 @@ if (isset($_GET["error"])) {
 <head>
     <meta charset="UTF-8">
     <title>Liste des terrains</title>
-        <link rel="icon" type="image/png" href="../assets/images/terraingo-logo.png">
+    <link rel="icon" type="image/png" href="../assets/images/terraingo-logo.png">
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 
@@ -52,6 +52,7 @@ if (isset($_GET["error"])) {
         <?php require_once "../views/layout/sidebar.php"; ?>
 
         <main class="main-content">
+
 
             <?php require_once "../views/layout/topbar.php"; ?>
 
@@ -65,6 +66,16 @@ if (isset($_GET["error"])) {
                 <?php if (empty($fields)): ?>
                     <p class="message">Aucun terrain disponible pour le moment.</p>
                 <?php else: ?>
+                    <form method="GET" class="filter-form">
+                        <label for="sport">Filtrer par sport :</label>
+                        <select name="sport" id="sport">
+                            <option value="">Tous</option>
+                            <option value="football">Football</option>
+                            <option value="basket">Basket</option>
+                            <option value="tennis">Tennis</option>
+                        </select>
+                        <button type="submit">Filtrer</button>
+                    </form>
 
                     <div class="fields-list">
                         <?php foreach ($fields as $field): ?>
@@ -123,7 +134,7 @@ if (isset($_GET["error"])) {
             </form>
         </div>
     </div>
-
+    <?php require_once __DIR__ . "/../views/layout/footer.php"; ?>
     <script src="../assets/js/script.js"></script>
 
 </body>

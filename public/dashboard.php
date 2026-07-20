@@ -65,7 +65,10 @@ $activePage = "dashboard";
             </section>
 
         </main>
+
     </div>
+    <?php require_once __DIR__ . "/../views/layout/footer.php"; ?>
+
 
     <script src="../assets/js/script.js"></script>
 </body>

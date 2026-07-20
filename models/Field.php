@@ -7,6 +7,7 @@ class Field
     {
         $this->conn = $db;
     }
+    public function countAll() {}
     public function getAll()
     {
         $sql = "SELECT * FROM " . $this->table . " ORDER BY created_at DESC";
