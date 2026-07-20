@@ -16,7 +16,8 @@ $database = new Database();
 $db = $database->connect();
 
 $fieldModel = new Field($db);
-$fields = $fieldModel->getAll();
+$sport = $_GET["sport"] ?? null;
+$fields = $fieldModel->getAll($sport);
 
 $message = "";
 
@@ -60,49 +61,45 @@ if (isset($_GET["error"])) {
                 <h1>Terrains disponibles</h1>
 
                 <?php if (!empty($message)): ?>
-                    <p class="message"><?php echo htmlspecialchars($message); ?></p>
+                <p class="message"><?php echo htmlspecialchars($message); ?></p>
                 <?php endif; ?>
 
                 <?php if (empty($fields)): ?>
-                    <p class="message">Aucun terrain disponible pour le moment.</p>
+                <p class="message">Aucun terrain disponible pour le moment.</p>
                 <?php else: ?>
-                    <form method="GET" class="filter-form">
-                        <label for="sport">Filtrer par sport :</label>
-                        <select name="sport" id="sport">
-                            <option value="">Tous</option>
-                            <option value="football">Football</option>
-                            <option value="basket">Basket</option>
-                            <option value="tennis">Tennis</option>
-                        </select>
-                        <button type="submit">Filtrer</button>
-                    </form>
+                <div class="filter-tabs"> <a href="fields.php" class="<?php echo empty($sport) ? 'active' : ''; ?>">
+                        Tous </a> <a href="fields.php?sport=football"
+                        class="<?php echo ($sport === 'football') ? 'active' : ''; ?>"> Football </a> <a
+                        href="fields.php?sport=basket" class="<?php echo ($sport === 'basket') ? 'active' : ''; ?>">
+                        Basket </a> <a href="fields.php?sport=tennis"
+                        class="<?php echo ($sport === 'tennis') ? 'active' : ''; ?>"> Tennis </a> </div>
 
-                    <div class="fields-list">
-                        <?php foreach ($fields as $field): ?>
-                            <div class="field-card">
-                                <span class="sport-badge">
-                                    <?php echo htmlspecialchars($field["sport_type"]); ?>
-                                </span>
+                <div class="fields-list">
+                    <?php foreach ($fields as $field): ?>
+                    <div class="field-card">
+                        <span class="sport-badge">
+                            <?php echo htmlspecialchars($field["sport_type"]); ?>
+                        </span>
 
-                                <h2><?php echo htmlspecialchars($field["name"]); ?></h2>
+                        <h2><?php echo htmlspecialchars($field["name"]); ?></h2>
 
-                                <p>
-                                    <strong>Lieu :</strong>
-                                    <?php echo htmlspecialchars($field["location"]); ?>
-                                </p>
+                        <p>
+                            <strong>Lieu :</strong>
+                            <?php echo htmlspecialchars($field["location"]); ?>
+                        </p>
 
-                                <p class="price">
-                                    <?php echo htmlspecialchars($field["price"]); ?> €
-                                </p>
+                        <p class="price">
+                            <?php echo htmlspecialchars($field["price"]); ?> €
+                        </p>
 
-                                <button class="btn open-reservation-modal"
-                                    data-field-id="<?php echo htmlspecialchars($field["id"]); ?>"
-                                    data-field-name="<?php echo htmlspecialchars($field["name"]); ?>">
-                                    Réserver
-                                </button>
-                            </div>
-                        <?php endforeach; ?>
+                        <button class="btn open-reservation-modal"
+                            data-field-id="<?php echo htmlspecialchars($field["id"]); ?>"
+                            data-field-name="<?php echo htmlspecialchars($field["name"]); ?>">
+                            Réserver
+                        </button>
                     </div>
+                    <?php endforeach; ?>
+                </div>
 
                 <?php endif; ?>
             </section>

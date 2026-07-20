@@ -2,32 +2,27 @@
 class Reservation
 {
     private $conn;
-    private $table = "reservations";
+    private $table = 'reservations';
+
     public function countByUserId($userId) {}
     public function countUpcomingByUserId($userId) {}
 
-    public function getByUserId($userId)
+    public function getByUserId($userId, $status = null)
     {
-        $sql = "SELECT
-                reservations.id,
-                reservations.date,
-                reservations.start_time,
-                reservations.end_time,
-                reservations.status,
-                fields.name AS field_name,
-                fields.sport_type,
-                fields.location,
-                fields.price
-                FROM " . $this->table . "
-                INNER JOIN fields ON reservations.field_id = fields.id
-                WHERE reservations.user_id = :user_id
-                ORDER BY reservations.date DESC, reservations.start_time DESC";
+        $sql = 'SELECT reservations.id, reservations.date, reservations.start_time, reservations.end_time, reservations.status, fields.NAME AS field_name, fields.sport_type, fields.location, fields.price FROM reservations INNER JOIN fields ON reservations.field_id = fields.id WHERE reservations.user_id = :user_id';
+        if (!empty($status)) {
+            $sql .= ' AND reservations.status = :status';
+        }
+        $sql .= ' ORDER BY reservations.date DESC, reservations.start_time DESC';
         $stmt = $this->conn->prepare($sql);
-        $stmt->execute([
-            ":user_id" => $userId
-        ]);
+        $params = [':user_id' => $userId];
+        if (!empty($status)) {
+            $params[':status'] = $status;
+        }
+        $stmt->execute($params);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
     public function __construct($db)
     {
         $this->conn = $db;
@@ -46,31 +41,31 @@ class Reservation
                 )";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([
-            ":field_id" => $fieldId,
-            ":date" => $date,
-            ":start_time" => $startTime,
-            ":end_time" => $endTime
+            ':field_id' => $fieldId,
+            ':date' => $date,
+            ':start_time' => $startTime,
+            ':end_time' => $endTime
         ]);
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        return $result["total"] == 0;
+        return $result['total'] == 0;
     }
 
     public function create($userId, $fieldId, $date, $startTime, $endTime)
     {
-        $sql = "INSERT INTO " . $this->table . "
+        $sql = 'INSERT INTO ' . $this->table . '
             (user_id, field_id, date, start_time, end_time, status)
             VALUES
-            (:user_id, :field_id, :date, :start_time, :end_time, :status)";
+            (:user_id, :field_id, :date, :start_time, :end_time, :status)';
 
         $stmt = $this->conn->prepare($sql);
 
         return $stmt->execute([
-            ":user_id" => $userId,
-            ":field_id" => $fieldId,
-            ":date" => $date,
-            ":start_time" => $startTime,
-            ":end_time" => $endTime,
-            ":status" => "pending"
+            ':user_id' => $userId,
+            ':field_id' => $fieldId,
+            ':date' => $date,
+            ':start_time' => $startTime,
+            ':end_time' => $endTime,
+            ':status' => 'pending'
         ]);
     }
 }

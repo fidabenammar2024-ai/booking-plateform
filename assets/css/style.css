@@ -117,8 +117,9 @@ button:hover {
 /* --- Landing page - TerrainGo --- */
 .landing-page {
   min-height: 100vh;
-  background: linear-gradient(rgba(15, 23, 42, 0.78), rgba(15, 23, 42, 0.88)),
-              url("../images/fond_acceuil.jpeg") no-repeat center center/cover;
+  background:
+    linear-gradient(rgba(15, 23, 42, 0.78), rgba(15, 23, 42, 0.88)),
+    url("../images/fond_acceuil.jpeg") no-repeat center center/cover;
   color: white;
 }
 
@@ -241,8 +242,9 @@ button:hover {
 /* --- Auth pages - login / register --- */
 .auth-page {
   min-height: 100vh;
-  background: linear-gradient(rgba(15, 23, 42, 0.78), rgba(15, 23, 42, 0.9)),
-              url("../images/fond_login.jpeg") no-repeat center center/cover;
+  background:
+    linear-gradient(rgba(15, 23, 42, 0.78), rgba(15, 23, 42, 0.9)),
+    url("../images/fond_login.jpeg") no-repeat center center/cover;
   color: white;
   display: flex;
   align-items: center;
@@ -359,13 +361,21 @@ button:hover {
   background: #dc3545;
 }
 @keyframes slideIn {
-from { transform: translateX(120%); opacity: 0; }
-to { transform: translateX(0); opacity: 1; }
+  from {
+    transform: translateX(120%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 @keyframes fadeOut {
-to { opacity: 0; visibility: hidden; }
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
 }
-
 
 /* =======================================================
    STRUCTURE D'AFFICHAGE DU DASHBOARD CLIENT / ADMIN
@@ -483,7 +493,9 @@ to { opacity: 0; visibility: hidden; }
   padding: 24px;
   border: 1px solid #e5e7eb;
   box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
   position: relative;
   overflow: hidden;
 }
@@ -549,7 +561,9 @@ to { opacity: 0; visibility: hidden; }
   border-radius: 12px;
   font-weight: 700;
   cursor: pointer;
-  transition: background 0.25s ease, transform 0.25s ease;
+  transition:
+    background 0.25s ease,
+    transform 0.25s ease;
 }
 
 .field-card .btn:hover {
@@ -572,7 +586,9 @@ to { opacity: 0; visibility: hidden; }
   padding: 24px;
   border: 1px solid #e5e7eb;
   box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
   position: relative;
   overflow: hidden;
 }
@@ -941,4 +957,45 @@ to { opacity: 0; visibility: hidden; }
   .auth-card {
     padding: 26px;
   }
+}
+
+.filter-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 25px 0 30px;
+}
+
+.filter-tabs a {
+    text-decoration: none;
+    padding: 10px 18px;
+    border-radius: 999px;
+    background: #f1f5f9;
+    color: #102a43;
+    font-weight: 700;
+    border: 1px solid #e5e7eb;
+    transition: 0.25s ease;
+}
+
+.filter-tabs a:hover {
+    background: #e6f4ea;
+    color: #1e7e34;
+    transform: translateY(-2px);
+}
+
+.filter-tabs a.active {
+    background: linear-gradient(135deg, #28a745, #1f7a8c);
+    color: white;
+    border-color: transparent;
+    box-shadow: 0 8px 20px rgba(40, 167, 69, 0.25);
+}
+.empty-state {
+    background: #f8fafc;
+    color: #52606d;
+    border: 1px dashed #cbd5e1;
+    border-radius: 16px;
+    padding: 24px;
+    text-align: center;
+    font-weight: 600;
+    margin-top: 20px;
 }

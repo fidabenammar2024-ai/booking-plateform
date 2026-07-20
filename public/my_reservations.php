@@ -1,11 +1,13 @@
 <?php
 session_start();
-$activePage = 'reservations';
-$pageTitle = "Mes réservations";
+
 if (!isset($_SESSION["user_id"])) {
     header("Location: login.php");
     exit;
 }
+
+$activePage = "reservations";
+$pageTitle = "Mes réservations";
 
 require_once "../config/db.php";
 require_once "../models/Reservation.php";
@@ -14,7 +16,9 @@ $database = new Database();
 $db = $database->connect();
 
 $reservationModel = new Reservation($db);
-$reservations = $reservationModel->getByUserId($_SESSION["user_id"]);
+
+$status = $_GET["status"] ?? null;
+$reservations = $reservationModel->getByUserId($_SESSION["user_id"], $status);
 
 $message = "";
 
@@ -35,80 +39,99 @@ if (isset($_GET["success"]) && $_GET["success"] === "reservation_created") {
 
 <body>
 
-    <div class="dashboard-layout">
+<div class="dashboard-layout">
 
-        <?php require_once "../views/layout/sidebar.php"; ?>
+    <?php require_once "../views/layout/sidebar.php"; ?>
 
-        <main class="main-content">
+    <main class="main-content">
 
-            <?php require_once "../views/layout/topbar.php"; ?>
+        <?php require_once "../views/layout/topbar.php"; ?>
 
+        <?php if (!empty($message)) : ?>
+            <div class="toast toast-success">
+                <?php echo htmlspecialchars($message); ?>
+            </div>
+        <?php endif; ?>
 
-            <section class="dashboard-card">
-                <h1>Mes réservations</h1>
+        <section class="dashboard-card">
+            <h1>Mes réservations</h1>
 
-                <?php if (!empty($message)): ?>
-                    <p class="message"><?php echo htmlspecialchars($message); ?></p>
-                <?php endif; ?>
+            <div class="filter-tabs">
+                <a href="my_reservations.php"
+                   class="<?php echo empty($status) ? 'active' : ''; ?>">
+                    Tous
+                </a>
 
-                <?php if (empty($reservations)): ?>
-                    <p class="message">Vous n’avez aucune réservation pour le moment.</p>
-                <?php else: ?>
-                    <form method="GET" class="filter-form">
-                        <label for="sport">Filtrer par status:</label>
-                        <select name="sport" id="sport">
-                            <option value="">Tous</option>
-                            <option value="football">pending</option>
-                            <option value="basket">confirmed</option>
-                            <option value="tennis">cancelled</option>
-                        </select>
-                        <button type="submit">Filtrer</button>
-                    </form>
+                <a href="my_reservations.php?status=pending"
+                   class="<?php echo ($status === 'pending') ? 'active' : ''; ?>">
+                    En attente
+                </a>
 
-                    <div class="reservations-list">
-                        <?php foreach ($reservations as $reservation): ?>
-                            <div class="reservation-card">
-                                <h2><?php echo htmlspecialchars($reservation["field_name"]); ?></h2>
+                <a href="my_reservations.php?status=confirmed"
+                   class="<?php echo ($status === 'confirmed') ? 'active' : ''; ?>">
+                    Confirmées
+                </a>
 
-                                <p>
-                                    <strong>Sport :</strong>
-                                    <?php echo htmlspecialchars($reservation["sport_type"]); ?>
-                                </p>
+                <a href="my_reservations.php?status=cancelled"
+                   class="<?php echo ($status === 'cancelled') ? 'active' : ''; ?>">
+                    Annulées
+                </a>
+            </div>
 
-                                <p>
-                                    <strong>Lieu :</strong>
-                                    <?php echo htmlspecialchars($reservation["location"]); ?>
-                                </p>
+            <?php if (empty($reservations)) : ?>
 
-                                <p>
-                                    <strong>Date :</strong>
-                                    <?php echo htmlspecialchars($reservation["date"]); ?>
-                                </p>
+                <p class="empty-state">
+                    Aucune réservation trouvée pour ce filtre.
+                </p>
 
-                                <p>
-                                    <strong>Heure :</strong>
-                                    <?php echo htmlspecialchars($reservation["start_time"]); ?>
-                                    -
-                                    <?php echo htmlspecialchars($reservation["end_time"]); ?>
-                                </p>
+            <?php else : ?>
 
-                                <p>
-                                    <strong>Statut :</strong>
-                                    <span class="status-badge status-<?php echo htmlspecialchars($reservation["status"]); ?>">
-                                        <?php echo htmlspecialchars($reservation["status"]); ?>
-                                    </span>
-                                </p>
-                            </div>
-                        <?php endforeach; ?>
-                    </div>
+                <div class="reservations-list">
+                    <?php foreach ($reservations as $reservation) : ?>
+                        <div class="reservation-card">
+                            <h2><?php echo htmlspecialchars($reservation["field_name"]); ?></h2>
 
-                <?php endif; ?>
-            </section>
+                            <p>
+                                <strong>Sport :</strong>
+                                <?php echo htmlspecialchars($reservation["sport_type"]); ?>
+                            </p>
 
-        </main>
-    </div>
-    <?php require_once __DIR__ . "/../views/layout/footer.php"; ?>
-    <script src="../assets/js/script.js"></script>
+                            <p>
+                                <strong>Lieu :</strong>
+                                <?php echo htmlspecialchars($reservation["location"]); ?>
+                            </p>
+
+                            <p>
+                                <strong>Date :</strong>
+                                <?php echo htmlspecialchars($reservation["date"]); ?>
+                            </p>
+
+                            <p>
+                                <strong>Heure :</strong>
+                                <?php echo htmlspecialchars($reservation["start_time"]); ?>
+                                -
+                                <?php echo htmlspecialchars($reservation["end_time"]); ?>
+                            </p>
+
+                            <p>
+                                <strong>Statut :</strong>
+                                <span class="status-badge status-<?php echo htmlspecialchars($reservation["status"]); ?>">
+                                    <?php echo htmlspecialchars($reservation["status"]); ?>
+                                </span>
+                            </p>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+
+            <?php endif; ?>
+        </section>
+
+        <?php require_once __DIR__ . "/../views/layout/footer.php"; ?>
+
+    </main>
+</div>
+
+<script src="../assets/js/script.js"></script>
 </body>
 
 </html>
