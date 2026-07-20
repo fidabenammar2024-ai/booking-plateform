@@ -30,39 +30,44 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <html lang="fr">
 
 <head>
-    <link rel="stylesheet" href="../assets/css/style.css">
     <meta charset="UTF-8">
-    <title>Inscription</title>
-    <link rel="icon" type="image/png" href="../assets/images/terraingo-logo.png">
+    <title>Inscription - TerrainGo</title>
+    <link rel="icon" type="image/png" href="../assets/images/favicon.png">
+    <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 
-<body class="register-page">
-    <h1>Créer un compte</h1>
-    <nav>
-        <a href="../index.php">Accueil</a> |
-        <a href="login.php">Connexion</a>
-    </nav>
-    <?php if (!empty($message)): ?>
-        <p><?php echo $message; ?></p>
+<body class="auth-page">
+    <?php if (!empty($message)) : ?>
+        <div class="toast <?php echo str_contains($message, 'succès') ? 'toast-
+success' : 'toast-error'; ?>">
+            <?php echo htmlspecialchars($message); ?>
+        </div>
     <?php endif; ?>
-    <form method="POST" action="">
-        <div>
-            <label for="name">Nom :</label>
-            <input type="text" id="name" name="name">
-        </div>
-        <br>
-        <div>
-            <label for="email">Email :</label>
-            <input type="email" id="email" name="email">
-        </div>
-        <br>
-        <div>
-            <label for="password">Mot de passe :</label>
-            <input type="password" id="password" name="password">
-        </div>
-        <br>
-        <button type="submit">Créer le compte</button>
-    </form>
+    <main class="auth-container">
+        <section class="auth-card">
+            <div class="auth-brand">
+                <div class="auth-logo">T</div>
+                <h1>TerrainGo</h1>
+                <p>Créer votre compte</p>
+            </div>
+            <form method="POST" action="">
+                <label for="name">Nom</label>
+                <input type="text" id="name" name="name" placeholder="Votre
+nom">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email"
+                    placeholder="exemple@email.com">
+                <label for="password">Mot de passe</label>
+                <input type="password" id="password" name="password"
+                    placeholder="Votre mot de passe">
+                <button type="submit">Créer le compte</button>
+            </form>
+            <p class="auth-link">
+                Vous avez déjà un compte ?
+                <a href="login.php">Se connecter</a>
+            </p>
+        </section>
+    </main>
 </body>
 
 </html>
