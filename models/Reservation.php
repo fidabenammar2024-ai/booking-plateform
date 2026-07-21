@@ -3,9 +3,27 @@ class Reservation
 {
     private $conn;
     private $table = 'reservations';
-
-    public function countByUserId($userId) {}
-    public function countUpcomingByUserId($userId) {}
+    public function countByUserId($userId)
+    {
+        $query = "SELECT COUNT(*) as total FROM " . $this->table . " WHERE user_id = :user_id";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(":user_id", $userId);
+        $stmt->execute();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $row['total'];
+    }
+    public function countUpcomingByUserId($userId)
+    {
+        $query = "SELECT COUNT(*) as total FROM " . $this->table . " 
+              WHERE user_id = :user_id 
+              AND date >= CURDATE() 
+              AND status != 'cancelled'";
+        $stmt = $this->conn->prepare($query);
+        $stmt->bindParam(":user_id", $userId);
+        $stmt->execute();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $row['total'];
+    }
 
     public function getByUserId($userId, $status = null)
     {

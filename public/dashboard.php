@@ -5,9 +5,19 @@ if (!isset($_SESSION["user_id"])) {
     header("Location: login.php");
     exit;
 }
-
 $pageTitle = "Tableau de bord";
 $activePage = "dashboard";
+require_once "../config/db.php";
+require_once "../models/Reservation.php";
+require_once "../models/Field.php";
+$database = new Database();
+$db = $database->connect();
+$reservationModel = new Reservation($db);
+$fieldModel = new Field($db);
+$userId = $_SESSION["user_id"];
+$totalReservations = $reservationModel->countByUserId($userId);
+$upcomingReservations = $reservationModel->countUpcomingByUserId($userId);
+$totalFields = $fieldModel->countAll();
 ?>
 
 <!DOCTYPE html>
@@ -40,17 +50,17 @@ $activePage = "dashboard";
                 <div class="stats-grid">
                     <div class="stat-card">
                         <h3>Mes réservations</h3>
-                        <p>3</p>
+                        <p class="stat-number"><?php echo $totalReservations; ?></p>
                     </div>
 
                     <div class="stat-card">
                         <h3>Réservations à venir</h3>
-                        <p>2</p>
+                        <p class="stat-number"><?php echo $upcomingReservations; ?></p>
                     </div>
 
                     <div class="stat-card">
                         <h3>Terrains disponibles</h3>
-                        <p>3</p>
+                        <p class="stat-number"><?php echo $totalFields; ?></p>
                     </div>
                 </div>
 

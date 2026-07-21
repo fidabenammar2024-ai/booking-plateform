@@ -8,9 +8,14 @@ class Field
     {
         $this->conn = $db;
     }
-
-    public function countAll() {}
-
+    // Compte le nombre total de terrains disponibles
+public function countAll() {
+    $query = "SELECT COUNT(*) as total FROM " . $this->table;
+    $stmt = $this->conn->prepare($query);
+    $stmt->execute();
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $row['total'];
+}
     public function getAll($sport = null)
     {
         $sql = 'SELECT id, NAME AS name, sport_type, location, price, created_at FROM fields';
