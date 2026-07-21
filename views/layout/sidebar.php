@@ -1,3 +1,13 @@
+<?php if (
+    isset($_SESSION["user_role"]) && $_SESSION["user_role"] ===
+    "admin"
+) : ?>
+    <a href="admin_dashboard.php" class="<?php echo ($activePage === 'admin') ?
+                                                'active' : ''; ?>">
+        <span class="nav-icon">🛠️</span>
+        <span>Administration</span>
+    </a>
+<?php endif; ?>
 <aside class="sidebar">
     <div class="sidebar-header">
         <div class="sidebar-logo">
