@@ -23,8 +23,7 @@
             <div class="landing-actions">
                 <a href="public/register.php" class="btn-primary">Créer un
                     compte</a>
-                <a href="public/login.php" class="btn-secondary">Se connecter</
-                        a>
+                <a href="public/login.php" class="btn-secondary">Se connecter</a>
             </div>
         </section>
         <section class="landing-features">
