@@ -26,16 +26,19 @@ $pageTitle = "Administration"; ?>
                 <h1>Espace administrateur</h1>
                 <p class="dashboard-intro"> Bienvenue dans l’espace admin de TerrainGo. Depuis cet espace, vous pourrez
                     bientôt gérer les terrains et les réservations. </p>
-                <div class="admin-actions"> <a href="#" class="admin-action-card">
+                <div class="admin-actions">
+                    <a href="admin_reservations.php" class="admin-action-card">
                         <h3>📅 Réservations</h3>
                         <p>Voir et gérer toutes les réservations.</p>
+                    </a>
                     </a> <a href="#" class="admin-action-card">
                         <h3>⚽ Terrains</h3>
                         <p>Ajouter, modifier ou supprimer des terrains.</p>
                     </a> <a href="#" class="admin-action-card">
                         <h3>👥 Utilisateurs</h3>
                         <p>Consulter les utilisateurs inscrits.</p>
-                    </a> </div>
+                    </a>
+                </div>
             </section> <?php require_once __DIR__ . "/../views/layout/footer.php"; ?>
         </main>
     </div>

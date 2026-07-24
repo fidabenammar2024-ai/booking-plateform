@@ -12,6 +12,37 @@ class Reservation
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         return $row['total'];
     }
+
+    public function getAllReservations($status = null)
+    {
+        $sql = "SELECT
+reservations.id,
+reservations.date,
+reservations.start_time,
+reservations.end_time,
+reservations.status,
+fields.NAME AS field_name,
+fields.sport_type,
+fields.location,
+users.NAME AS user_name,
+users.email AS user_email
+FROM reservations
+INNER JOIN fields ON reservations.field_id = fields.id
+INNER JOIN users ON reservations.user_id = users.id";
+        if (!empty($status)) {
+            $sql .= " WHERE reservations.status = :status";
+        }
+        $sql .= " ORDER BY reservations.date DESC, reservations.start_time DESC";
+        $stmt = $this->conn->prepare($sql);
+        if (!empty($status)) {
+            $stmt->execute([
+                ":status" => $status
+            ]);
+        } else {
+            $stmt->execute();
+        }
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
     public function countUpcomingByUserId($userId)
     {
         $query = "SELECT COUNT(*) as total FROM " . $this->table . " 
