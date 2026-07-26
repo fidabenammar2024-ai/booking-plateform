@@ -12,7 +12,17 @@ class Reservation
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         return $row['total'];
     }
-
+    public function updateStatus($reservationId, $status)
+    {
+        $sql = "UPDATE reservations
+SET status = :status
+WHERE id = :id";
+        $stmt = $this->conn->prepare($sql);
+        return $stmt->execute([
+            ":status" => $status,
+            ":id" => $reservationId
+        ]);
+    }
     public function getAllReservations($status = null)
     {
         $sql = "SELECT

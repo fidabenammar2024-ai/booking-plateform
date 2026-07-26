@@ -8,6 +8,7 @@ if ($_SESSION["user_role"] !== "admin") {
     header("Location: dashboard.php");
     exit;
 }
+
 $activePage = "admin";
 $pageTitle = "Gestion des réservations";
 require_once "../config/db.php";
@@ -17,6 +18,18 @@ $db = $database->connect();
 $reservationModel = new Reservation($db);
 $status = $_GET["status"] ?? null;
 $reservations = $reservationModel->getAllReservations($status);
+$successMessage = "";
+$errorMessage = "";
+if (isset($_GET["success"]) && $_GET["success"] === "status_updated") {
+    $successMessage = "Statut de la réservation mis à jour avec succès.";
+}
+if (isset($_GET["error"])) {
+    if ($_GET["error"] === "invalid_request") {
+        $errorMessage = "Requête invalide.";
+    } elseif ($_GET["error"] === "update_failed") {
+        $errorMessage = "Erreur lors de la mise à jour du statut.";
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -33,6 +46,16 @@ $reservations = $reservationModel->getAllReservations($status);
         <?php require_once "../views/layout/sidebar.php"; ?>
         <main class="main-content">
             <?php require_once "../views/layout/topbar.php"; ?>
+            <?php if (!empty($successMessage)) : ?>
+                <div class="toast toast-success">
+                    <?php echo htmlspecialchars($successMessage); ?>
+                </div>
+            <?php endif; ?>
+            <?php if (!empty($errorMessage)) : ?>
+                <div class="toast toast-error">
+                    <?php echo htmlspecialchars($errorMessage); ?>
+                </div>
+            <?php endif; ?>
             <section class="dashboard-card">
                 <h1>Gestion des réservations</h1>
                 <p class="dashboard-intro">
@@ -73,6 +96,7 @@ $reservations = $reservationModel->getAllReservations($status);
                                     <th>Date</th>
                                     <th>Heure</th>
                                     <th>Statut</th>
+                                    <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -94,6 +118,20 @@ $reservations = $reservationModel->getAllReservations($status);
 status-<?php echo htmlspecialchars($reservation["status"]); ?>">
                                                 <?php echo htmlspecialchars($reservation["status"]); ?>
                                             </span>
+                                        </td>
+                                        <td>
+                                            <?php if ($reservation["status"] !== "confirmed") : ?>
+                                                <a href="admin_update_reservation.php?id=<?php echo $reservation["id"]; ?>&status=confirmed"
+                                                    class="admin-btn confirm">
+                                                    Confirmer
+                                                </a>
+                                                <?php endif; ?>
+                                                <?php if ($reservation["status"] !== "cancelled") : ?>
+                                                    <a href="admin_update_reservation.php?id=<?php echo $reservation["id"]; ?>&status=cancelled"
+                                                        class="admin-btn cancel">
+                                                        Annuler
+                                                    </a>
+                                                <?php endif; ?>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
