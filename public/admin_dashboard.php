@@ -31,7 +31,7 @@ $pageTitle = "Administration"; ?>
                         <h3>📅 Réservations</h3>
                         <p>Voir et gérer toutes les réservations.</p>
                     </a>
-                    </a> <a href="#" class="admin-action-card">
+                    </a> <a href="admin_fields.php" class="admin-action-card">
                         <h3>⚽ Terrains</h3>
                         <p>Ajouter, modifier ou supprimer des terrains.</p>
                     </a> <a href="#" class="admin-action-card">
