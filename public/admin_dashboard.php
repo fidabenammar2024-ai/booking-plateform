@@ -7,7 +7,7 @@ if ($_SESSION["user_role"] !== "admin") {
     header("Location: dashboard.php");
     exit;
 }
-$activePage = "admin";
+$activePage = "admin_dashboard";
 $pageTitle = "Administration"; ?>
 <!DOCTYPE html>
 <html lang="fr">

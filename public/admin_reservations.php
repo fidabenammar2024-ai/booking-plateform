@@ -9,7 +9,7 @@ if ($_SESSION["user_role"] !== "admin") {
     exit;
 }
 
-$activePage = "admin";
+$activePage = "admin_reservations";
 $pageTitle = "Gestion des réservations";
 require_once "../config/db.php";
 require_once "../models/Reservation.php";
