@@ -1,24 +1,24 @@
 <?php
-session_start();
-if (!isset($_SESSION["user_id"])) {
-    header("Location: login.php");
-    exit;
-}
-if ($_SESSION["user_role"] !== "admin") {
-    header("Location: dashboard.php");
-    exit;
-}
+require_once "admin_guard.php";
 require_once "../config/db.php";
 require_once "../models/Field.php";
-$id = $_GET["id"] ?? null;
-if (empty($id)) {
-    header("Location: admin_fields.php");
+if ($_SERVER["REQUEST_METHOD"] !== "POST") {
+    header("Location: admin_fields.php?error=invalid_request");
+    exit;
+}
+$fieldId = $_POST["id"] ?? null;
+if (empty($fieldId)) {
+    header("Location: admin_fields.php?error=missing_id");
     exit;
 }
 $database = new Database();
 $db = $database->connect();
 $fieldModel = new Field($db);
-$deleted = $fieldModel->delete($id);
+if ($fieldModel->hasReservations($fieldId)) {
+    header("Location: admin_fields.php?error=field_has_reservations");
+    exit;
+}
+$deleted = $fieldModel->delete($fieldId);
 if ($deleted) {
     header("Location: admin_fields.php?success=field_deleted");
     exit;

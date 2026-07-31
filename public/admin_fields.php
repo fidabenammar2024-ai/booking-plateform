@@ -1,13 +1,5 @@
 <?php
-session_start();
-if (!isset($_SESSION["user_id"])) {
-    header("Location: login.php");
-    exit;
-}
-if ($_SESSION["user_role"] !== "admin") {
-    header("Location: dashboard.php");
-    exit;
-}
+require_once "admin_guard.php";
 $activePage = "admin_fields";
 $pageTitle = "Gestion des terrains";
 require_once "../config/db.php";
@@ -16,20 +8,28 @@ $database = new Database();
 $db = $database->connect();
 $fieldModel = new Field($db);
 $fields = $fieldModel->getAll();
-$message = "";
+$successMessage = "";
 $errorMessage = "";
 if (isset($_GET["success"])) {
-    if ($_GET["success"] === "field_created") {
-        $message = "Terrain ajoute avec succes.";
+    if ($_GET["success"] === "field_added") {
+        $successMessage = "Terrain ajouté avec succès.";
     } elseif ($_GET["success"] === "field_updated") {
-        $message = "Terrain modifie avec succes.";
+        $successMessage = "Terrain modifié avec succès.";
     } elseif ($_GET["success"] === "field_deleted") {
-        $message = "Terrain supprime avec succes.";
+        $successMessage = "Terrain supprimé avec succès.";
     }
 }
 if (isset($_GET["error"])) {
-    if ($_GET["error"] === "delete_failed") {
+    if ($_GET["error"] === "empty_fields") {
+        $errorMessage = "Veuillez remplir tous les champs.";
+    } elseif ($_GET["error"] === "invalid_price") {
+        $errorMessage = "Le prix doit être supérieur à 0.";
+    } elseif ($_GET["error"] === "field_has_reservations") {
+        $errorMessage = "Impossible de supprimer ce terrain car il possède déjà des réservations.";
+    } elseif ($_GET["error"] === "delete_failed") {
         $errorMessage = "Erreur lors de la suppression du terrain.";
+    } else {
+        $errorMessage = "Une erreur est survenue.";
     }
 }
 ?>
@@ -48,11 +48,15 @@ if (isset($_GET["error"])) {
         <?php require_once "../views/layout/sidebar.php"; ?>
         <main class="main-content">
             <?php require_once "../views/layout/topbar.php"; ?>
-            <?php if (!empty($message)) : ?>
-                <div class="toast toast-success"><?php echo htmlspecialchars($message); ?></div>
+            <?php if (!empty($successMessage)) : ?>
+                <div class="toast toast-success">
+                    <?php echo htmlspecialchars($successMessage); ?>
+                </div>
             <?php endif; ?>
             <?php if (!empty($errorMessage)) : ?>
-                <div class="toast toast-error"><?php echo htmlspecialchars($errorMessage); ?></div>
+                <div class="toast toast-error">
+                    <?php echo htmlspecialchars($errorMessage); ?>
+                </div>
             <?php endif; ?>
             <section class="dashboard-card">
                 <div class="admin-page-header">
@@ -84,11 +88,14 @@ if (isset($_GET["error"])) {
                                         <td><?php echo htmlspecialchars($field["location"]); ?></td>
                                         <td><?php echo htmlspecialchars($field["price"]); ?> €</td>
                                         <td>
-                                            <a href="admin_edit_field.php?id=<?php echo $field["id"]; ?>" class="admin-btn
-edit">Modifier</a>
-                                            <a href="admin_delete_field.php?id=<?php echo $field["id"]; ?>" class="admin-btn cancel"
-                                                onclick="return confirm('Supprimer ce terrain ?');">Supprimer</a>
-                                        </td>
+                                            <a href="admin_edit_field.php?id=<?php echo $field["id"]; ?>" class="admin-btn edit">Modifier</a>
+                                            <form method="POST" action="admin_delete_field.php" class="inline-form"
+                                                onsubmit="return confirm('Voulez-vous vraiment supprimer ce terrain ?');">
+                                                <input type="hidden" name="id" value="<?php echo htmlspecialchars($field["id"]); ?>">
+                                                <button type="submit" class="admin-btn cancel">
+                                                    Supprimer
+                                                </button>
+                                            </form>
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>

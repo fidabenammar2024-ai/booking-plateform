@@ -30,6 +30,18 @@ VALUES (:name, :sport_type, :location, :price)";
             ":price" => $price
         ]);
     }
+    public function hasReservations($fieldId)
+    {
+        $sql = "SELECT COUNT(*) AS total
+FROM reservations
+WHERE field_id = :field_id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([
+            ":field_id" => $fieldId
+        ]);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result["total"] > 0;
+    }
     public function update($id, $name, $sportType, $location, $price)
     {
         $sql = "UPDATE fields

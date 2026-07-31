@@ -1,13 +1,5 @@
 <?php
-session_start();
-if (!isset($_SESSION["user_id"])) {
-    header("Location: login.php");
-    exit;
-}
-if ($_SESSION["user_role"] !== "admin") {
-    header("Location: dashboard.php");
-    exit;
-}
+require_once "admin_guard.php";
 $activePage = "admin_fields";
 $pageTitle = "Ajouter un terrain";
 require_once "../config/db.php";
