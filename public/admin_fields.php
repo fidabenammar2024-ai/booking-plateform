@@ -96,6 +96,10 @@ if (isset($_GET["error"])) {
                                                     Supprimer
                                                 </button>
                                             </form>
+                                            <a href="admin_field_availability.php?field_id=<?php echo $field["id"]; ?>"
+                                                class="admin-btn schedule">
+                                                Horaires
+                                            </a>
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>

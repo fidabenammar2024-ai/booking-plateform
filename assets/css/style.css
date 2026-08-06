@@ -1156,3 +1156,37 @@ button:hover {
   border: none;
   cursor: pointer;
 }
+.admin-form,
+.availability-form {
+  margin-top: 25px;
+}
+.availability-row {
+  display: grid;
+  grid-template-columns: 120px 100px 1fr 1fr 120px;
+  gap: 12px;
+  align-items: center;
+  background: #f8fafc;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 14px;
+  margin-bottom: 12px;
+}
+.availability-row strong {
+  color: #102a43;
+}
+.availability-row input[type="time"],
+.availability-row input[type="number"],
+.admin-form select {
+  padding: 11px;
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+}
+.admin-btn.schedule {
+  background: #1f7a8c;
+  color: white;
+}
+@media (max-width: 850px) {
+  .availability-row {
+    grid-template-columns: 1fr;
+  }
+}

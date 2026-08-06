@@ -36,3 +36,18 @@ VALUES
 ('Terrain Foot 1', 'football', 'Centre Sportif A', 50.00),
 ('Terrain Basket 1', 'basket', 'Centre Sportif B', 30.00),
 ('Terrain Tennis 1', 'tennis', 'Club Tennis C', 25.00);
+CREATE TABLE field_availability_settings (
+id INT AUTO_INCREMENT PRIMARY KEY,
+field_id INT NOT NULL,
+day_of_week INT NOT NULL,
+opening_time TIME NULL,
+closing_time TIME NULL,
+slot_duration INT NOT NULL DEFAULT 60,
+is_closed TINYINT(1) NOT NULL DEFAULT 0,
+created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+updated_at TIMESTAMP NULL DEFAULT NULL,
+UNIQUE KEY unique_field_day (field_id, day_of_week),
+CONSTRAINT fk_availability_field
+FOREIGN KEY (field_id) REFERENCES fields(id)
+ON DELETE CASCADE
+);
