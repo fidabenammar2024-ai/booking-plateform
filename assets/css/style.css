@@ -1189,3 +1189,99 @@ button:hover {
     grid-template-columns: 1fr;
   }
 }
+.sidebar {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    align-items: stretch !important;
+}
+
+.sidebar-brand, 
+.sidebar-header,
+.logo {
+    margin-bottom: 20px !important;
+}
+
+.sidebar-menu, 
+.sidebar-nav, 
+.nav-list {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+}
+
+.sidebar .nav-item, 
+.sidebar a {
+    margin-top: 0 !important;
+    margin-bottom: 6px !important;
+}
+.main-content, 
+.dashboard-card {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow-x: hidden !important;
+}
+
+/* Centrage du formulaire des horaires */
+.availability-form {
+    width: 100% !important;
+    max-width: 850px !important; /* Limite la largeur globale */
+    margin: 0 auto !important; /* Centre parfaitement horizontalement */
+}
+
+/* Tableau compact */
+.availability-table-wrapper {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+    margin-top: 15px !important;
+}
+
+.availability-table {
+    width: 100% !important;
+    table-layout: fixed !important; /* Force le respect des largeurs */
+    border-collapse: collapse !important;
+}
+
+.availability-table th, 
+.availability-table td {
+    padding: 8px 4px !important;
+    font-size: 0.85rem !important;
+    text-align: center !important;
+    vertical-align: middle !important;
+}
+
+/* Réduction de la taille des champs d'heures */
+.availability-table input[type="time"] {
+    width: 110px !important;
+    padding: 4px 6px !important;
+    font-size: 0.82rem !important;
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 6px !important;
+    box-sizing: border-box !important;
+}
+
+/* Réduction de la taille du champ numérique (durée) */
+.availability-table input[type="number"] {
+    width: 65px !important;
+    padding: 4px 6px !important;
+    font-size: 0.82rem !important;
+    border: 1px solid #cbd5e1 !important;
+    border-radius: 6px !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+}
+
+/* Bouton d'enregistrement centré et ajusté */
+.availability-form .form-actions {
+    display: flex !important;
+    justify-content: center !important;
+    margin-top: 25px !important;
+}
+
+.availability-form .form-actions button {
+    max-width: 300px !important;
+    width: 100% !important;
+}

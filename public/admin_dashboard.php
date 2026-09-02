@@ -2,6 +2,7 @@
 require_once "admin_guard.php";
 $activePage = "admin_dashboard";
 $pageTitle = "Administration";
+require_once "../config/db.php";
 ?>
 <!DOCTYPE html>
 <html lang="fr">

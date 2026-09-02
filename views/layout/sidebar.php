@@ -28,15 +28,17 @@
             isset($_SESSION["user_role"]) && $_SESSION["user_role"] ===
             "admin"
         ) : ?>
-            <a href="admin_dashboard.php" class="<?php echo ($activePage === 'admin') ?
-                                                        'active' : ''; ?>">
+            <?php
+            $adminPages = ['admin_dashboard', 'admin_fields', 'admin_reservations', 'admin_users'];
+            ?>
+            <a href="admin_dashboard.php" class="nav-item <?php echo (in_array($activePage ?? '', $adminPages)) ? 'active' : ''; ?>">
                 <span class="nav-icon">🛠️</span>
                 <span>Administration</span>
             </a>
             <a href="admin_field_availability.php"
                 class="<?php echo ($activePage === 'admin_availability') ? 'active' : ''; ?>">
-                <span class="nav-icon"> </span>
-                <span>Horaires</span>
+                <span class="nav-icon">🕐</span>
+                <span> Horaires</span>
             </a>
 
         <?php endif; ?>

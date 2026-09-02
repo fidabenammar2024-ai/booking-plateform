@@ -2,14 +2,19 @@
 require_once "admin_guard.php";
 $activePage = "admin_fields";
 $pageTitle = "Gestion des terrains";
+
 require_once "../config/db.php";
 require_once "../models/Field.php";
+
 $database = new Database();
 $db = $database->connect();
 $fieldModel = new Field($db);
+
 $fields = $fieldModel->getAll();
+
 $successMessage = "";
 $errorMessage = "";
+
 if (isset($_GET["success"])) {
     if ($_GET["success"] === "field_added") {
         $successMessage = "Terrain ajouté avec succès.";
@@ -19,6 +24,7 @@ if (isset($_GET["success"])) {
         $successMessage = "Terrain supprimé avec succès.";
     }
 }
+
 if (isset($_GET["error"])) {
     if ($_GET["error"] === "empty_fields") {
         $errorMessage = "Veuillez remplir tous les champs.";
@@ -40,24 +46,28 @@ if (isset($_GET["error"])) {
     <meta charset="UTF-8">
     <title>Gestion des terrains - TerrainGo</title>
     <link rel="icon" type="image/png" href="../assets/images/terraingo-logo.png">
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/style.css?v=1">
 </head>
 
 <body>
     <div class="dashboard-layout">
         <?php require_once "../views/layout/sidebar.php"; ?>
+
         <main class="main-content">
             <?php require_once "../views/layout/topbar.php"; ?>
+
             <?php if (!empty($successMessage)) : ?>
                 <div class="toast toast-success">
                     <?php echo htmlspecialchars($successMessage); ?>
                 </div>
             <?php endif; ?>
+
             <?php if (!empty($errorMessage)) : ?>
                 <div class="toast toast-error">
                     <?php echo htmlspecialchars($errorMessage); ?>
                 </div>
             <?php endif; ?>
+
             <section class="dashboard-card">
                 <div class="admin-page-header">
                     <div>
@@ -66,6 +76,7 @@ if (isset($_GET["error"])) {
                     </div>
                     <a href="admin_add_field.php" class="admin-btn confirm">Ajouter un terrain</a>
                 </div>
+
                 <?php if (empty($fields)) : ?>
                     <p class="empty-state">Aucun terrain disponible pour le moment.</p>
                 <?php else : ?>
@@ -86,9 +97,10 @@ if (isset($_GET["error"])) {
                                         <td><?php echo htmlspecialchars($field["name"]); ?></td>
                                         <td><?php echo htmlspecialchars($field["sport_type"]); ?></td>
                                         <td><?php echo htmlspecialchars($field["location"]); ?></td>
-                                        <td><?php echo htmlspecialchars($field["price"]); ?> €</td>
+                                        <td><?php echo htmlspecialchars($field["price"]); ?> DT</td>
                                         <td>
                                             <a href="admin_edit_field.php?id=<?php echo $field["id"]; ?>" class="admin-btn edit">Modifier</a>
+
                                             <form method="POST" action="admin_delete_field.php" class="inline-form"
                                                 onsubmit="return confirm('Voulez-vous vraiment supprimer ce terrain ?');">
                                                 <input type="hidden" name="id" value="<?php echo htmlspecialchars($field["id"]); ?>">
@@ -96,10 +108,11 @@ if (isset($_GET["error"])) {
                                                     Supprimer
                                                 </button>
                                             </form>
-                                            <a href="admin_field_availability.php?field_id=<?php echo $field["id"]; ?>"
-                                                class="admin-btn schedule">
+
+                                            <a href="admin_field_availability.php?field_id=<?php echo $field["id"]; ?>" class="admin-btn schedule">
                                                 Horaires
                                             </a>
+                                        </td>
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>
@@ -107,7 +120,8 @@ if (isset($_GET["error"])) {
                     </div>
                 <?php endif; ?>
             </section>
-            <?php require_once __DIR__ . "/../views/layout/footer.php"; ?>
+
+            <?php require_once "../views/layout/footer.php"; ?>
         </main>
     </div>
     <script src="../assets/js/script.js"></script>
