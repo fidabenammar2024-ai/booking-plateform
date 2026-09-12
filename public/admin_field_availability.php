@@ -42,10 +42,26 @@ $days = [
 $successMessage = "";
 $errorMessage = "";
 
-if (isset($_GET["success"]) && $_GET["success"] === "availability_saved") {
-    $successMessage = "Horaires enregistrés avec succès.";
-} elseif (isset($_GET["error"])) {
-    $errorMessage = "Une erreur est survenue lors de l'enregistrement des horaires.";
+if (isset($_GET["success"])) {
+    if ($_GET["success"] === "availability_saved") {
+        $successMessage = "Horaires enregistrés avec succès.";
+    }
+}
+
+if (isset($_GET["error"])) {
+    if ($_GET["error"] === "missing_data") {
+        $errorMessage = "Données manquantes.";
+    } elseif ($_GET["error"] === "missing_hours") {
+        $errorMessage = "Veuillez renseigner les heures d'ouverture et de fermeture.";
+    } elseif ($_GET["error"] === "invalid_hours") {
+        $errorMessage = "L'heure de fermeture doit être supérieure à l'heure d'ouverture.";
+    } elseif ($_GET["error"] === "invalid_duration") {
+        $errorMessage = "La durée du créneau doit être supérieure à 0.";
+    } elseif ($_GET["error"] === "save_failed") {
+        $errorMessage = "Une erreur est survenue lors de l'enregistrement des horaires.";
+    } else {
+        $errorMessage = "Une erreur est survenue.";
+    }
 }
 ?>
 <!DOCTYPE html>
