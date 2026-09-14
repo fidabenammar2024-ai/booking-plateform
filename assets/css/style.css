@@ -1285,3 +1285,22 @@ button:hover {
     max-width: 300px !important;
     width: 100% !important;
 }
+.slot-message {
+margin: 8px 0 16px;
+font-weight: 700;
+font-size: 0.9rem;
+}
+.slot-success { color: #1e7e34; }
+.slot-error { color: #dc3545; }
+#slot:disabled,
+#confirmReservationBtn:disabled {
+opacity: 0.6;
+cursor: not-allowed;
+}
+#slot {
+width: 100%;
+padding: 12px;
+border-radius: 10px;
+border: 1px solid #cbd5e1;
+margin-bottom: 10px;
+}

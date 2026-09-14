@@ -14,38 +14,40 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
 require_once "../config/db.php";
 require_once "../models/Reservation.php";
 
+// Récupération des données POST
 $fieldId = $_POST["field_id"] ?? null;
 $date = $_POST["date"] ?? "";
-$startTime = $_POST["start_time"] ?? "";
-$endTime = $_POST["end_time"] ?? "";
+$slot = $_POST["slot"] ?? "";
 
-if (empty($fieldId) || empty($date) || empty($startTime) || empty($endTime)) {
+// 1. Vérification des champs vides
+if (empty($fieldId) || empty($date) || empty($slot)) {
     header("Location: fields.php?error=empty_fields");
     exit;
 }
 
-if ($date < date("Y-m-d")) {
-    header("Location: fields.php?error=past_date");
+// 2. Découpage du créneau (format attendu : "08:00|09:00")
+$slotParts = explode("|", $slot);
+if (count($slotParts) !== 2) {
+    header("Location: fields.php?error=invalid_slot");
     exit;
 }
 
-if ($startTime >= $endTime) {
-    header("Location: fields.php?error=invalid_time");
-    exit;
-}
+$startTime = $slotParts[0];
+$endTime = $slotParts[1];
 
+// 3. Connexion à la BDD et modèle
 $database = new Database();
 $db = $database->connect();
-
 $reservationModel = new Reservation($db);
 
+// 4. Vérification de la disponibilité
 $isAvailable = $reservationModel->isAvailable($fieldId, $date, $startTime, $endTime);
-
 if (!$isAvailable) {
     header("Location: fields.php?error=not_available");
     exit;
 }
 
+// 5. Création de la réservation
 $created = $reservationModel->create(
     $_SESSION["user_id"],
     $fieldId,

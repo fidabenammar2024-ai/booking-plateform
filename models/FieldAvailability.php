@@ -34,6 +34,21 @@ class FieldAvailability
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    public function getByFieldAndDay($fieldId, $dayOfWeek)
+    {
+        $sql = "SELECT id, field_id, day_of_week, opening_time,
+closing_time, slot_duration, is_closed
+FROM " . $this->table . "
+WHERE field_id = :field_id
+AND day_of_week = :day_of_week
+LIMIT 1";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([
+            ":field_id" => $fieldId,
+            ":day_of_week" => $dayOfWeek
+        ]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 
     public function saveDay(
         $fieldId,

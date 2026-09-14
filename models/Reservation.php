@@ -12,6 +12,20 @@ class Reservation
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
         return $row['total'];
     }
+    public function getReservedSlotsByFieldAndDate($fieldId, $date)
+    {
+        $sql = "SELECT start_time, end_time
+FROM reservations
+WHERE field_id = :field_id
+AND date = :date
+AND status != 'cancelled'";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([
+            ":field_id" => $fieldId,
+            ":date" => $date
+        ]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
     public function updateStatus($reservationId, $status)
     {
         $sql = "UPDATE reservations
