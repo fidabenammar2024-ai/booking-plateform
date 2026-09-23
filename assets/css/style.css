@@ -1190,117 +1190,293 @@ button:hover {
   }
 }
 .sidebar {
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: flex-start !important;
-    align-items: stretch !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  align-items: stretch !important;
 }
 
-.sidebar-brand, 
+.sidebar-brand,
 .sidebar-header,
 .logo {
-    margin-bottom: 20px !important;
+  margin-bottom: 20px !important;
 }
 
-.sidebar-menu, 
-.sidebar-nav, 
+.sidebar-menu,
+.sidebar-nav,
 .nav-list {
-    margin-top: 0 !important;
-    padding-top: 0 !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: flex-start !important;
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
 }
 
-.sidebar .nav-item, 
+.sidebar .nav-item,
 .sidebar a {
-    margin-top: 0 !important;
-    margin-bottom: 6px !important;
+  margin-top: 0 !important;
+  margin-bottom: 6px !important;
 }
-.main-content, 
+.main-content,
 .dashboard-card {
-    max-width: 100% !important;
-    box-sizing: border-box !important;
-    overflow-x: hidden !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  overflow-x: hidden !important;
 }
 
 /* Centrage du formulaire des horaires */
 .availability-form {
-    width: 100% !important;
-    max-width: 850px !important; /* Limite la largeur globale */
-    margin: 0 auto !important; /* Centre parfaitement horizontalement */
+  width: 100% !important;
+  max-width: 850px !important; /* Limite la largeur globale */
+  margin: 0 auto !important; /* Centre parfaitement horizontalement */
 }
 
 /* Tableau compact */
 .availability-table-wrapper {
-    width: 100% !important;
-    display: flex !important;
-    justify-content: center !important;
-    margin-top: 15px !important;
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+  margin-top: 15px !important;
 }
 
 .availability-table {
-    width: 100% !important;
-    table-layout: fixed !important; /* Force le respect des largeurs */
-    border-collapse: collapse !important;
+  width: 100% !important;
+  table-layout: fixed !important; /* Force le respect des largeurs */
+  border-collapse: collapse !important;
 }
 
-.availability-table th, 
+.availability-table th,
 .availability-table td {
-    padding: 8px 4px !important;
-    font-size: 0.85rem !important;
-    text-align: center !important;
-    vertical-align: middle !important;
+  padding: 8px 4px !important;
+  font-size: 0.85rem !important;
+  text-align: center !important;
+  vertical-align: middle !important;
 }
 
 /* Réduction de la taille des champs d'heures */
 .availability-table input[type="time"] {
-    width: 110px !important;
-    padding: 4px 6px !important;
-    font-size: 0.82rem !important;
-    border: 1px solid #cbd5e1 !important;
-    border-radius: 6px !important;
-    box-sizing: border-box !important;
+  width: 110px !important;
+  padding: 4px 6px !important;
+  font-size: 0.82rem !important;
+  border: 1px solid #cbd5e1 !important;
+  border-radius: 6px !important;
+  box-sizing: border-box !important;
 }
 
 /* Réduction de la taille du champ numérique (durée) */
 .availability-table input[type="number"] {
-    width: 65px !important;
-    padding: 4px 6px !important;
-    font-size: 0.82rem !important;
-    border: 1px solid #cbd5e1 !important;
-    border-radius: 6px !important;
-    text-align: center !important;
-    box-sizing: border-box !important;
+  width: 65px !important;
+  padding: 4px 6px !important;
+  font-size: 0.82rem !important;
+  border: 1px solid #cbd5e1 !important;
+  border-radius: 6px !important;
+  text-align: center !important;
+  box-sizing: border-box !important;
 }
 
 /* Bouton d'enregistrement centré et ajusté */
 .availability-form .form-actions {
-    display: flex !important;
-    justify-content: center !important;
-    margin-top: 25px !important;
+  display: flex !important;
+  justify-content: center !important;
+  margin-top: 25px !important;
 }
 
 .availability-form .form-actions button {
-    max-width: 300px !important;
-    width: 100% !important;
+  max-width: 300px !important;
+  width: 100% !important;
 }
 .slot-message {
-margin: 8px 0 16px;
-font-weight: 700;
-font-size: 0.9rem;
+  margin: 8px 0 16px;
+  font-weight: 700;
+  font-size: 0.9rem;
 }
-.slot-success { color: #1e7e34; }
-.slot-error { color: #dc3545; }
+.slot-success {
+  color: #1e7e34;
+}
+.slot-error {
+  color: #dc3545;
+}
 #slot:disabled,
 #confirmReservationBtn:disabled {
-opacity: 0.6;
-cursor: not-allowed;
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 #slot {
-width: 100%;
-padding: 12px;
-border-radius: 10px;
-border: 1px solid #cbd5e1;
-margin-bottom: 10px;
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+  margin-bottom: 10px;
+}
+.cancel-form {
+  margin-top: 16px;
+}
+.admin-btn.cancel {
+  background: #dc3545;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+.admin-btn.cancel:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+.sidebar {
+  width: 270px;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #111827 0%, #1f2933 100%);
+  color: white;
+  padding: 24px 18px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 8px 0 24px rgba(15, 23, 42, 0.12);
+}
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 0 6px;
+  margin-bottom: 30px;
+}
+.sidebar-logo {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.sidebar-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.sidebar-header h2 {
+  margin: 0;
+  color: white;
+  font-size: 1.35rem;
+  font-weight: 800;
+}
+.sidebar-header p {
+  margin: 3px 0 0;
+  color: #9fb3c8;
+  font-size: 0.8rem;
+}
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+.sidebar-section-title {
+  margin: 18px 12px 7px;
+  color: #829ab1;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1.3px;
+}
+.sidebar-section-title:first-child {
+  margin-top: 0;
+}
+.sidebar-section-title.admin-section {
+  margin-top: 28px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+.sidebar-nav a {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 13px;
+  color: #d9e2ec;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.25s ease;
+}
+.sidebar-nav a:hover {
+  background: rgba(255, 255, 255, 0.07);
+  color: white;
+  transform: translateX(3px);
+}
+.sidebar-nav a.active {
+  background: linear-gradient(135deg, #28a745, #1f7a8c);
+  color: white;
+  box-shadow: 0 8px 20px rgba(40, 167, 69, 0.25);
+}
+.sidebar-nav a.active::before {
+  content: "";
+  position: absolute;
+  left: -18px;
+  width: 4px;
+  height: 28px;
+  border-radius: 999px;
+  background: #7ee787;
+}
+.nav-icon {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.07);
+  font-size: 1rem;
+}
+.sidebar-nav a.active .nav-icon {
+  background: rgba(255, 255, 255, 0.18);
+}
+.sidebar-user {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 10px;
+  margin-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+.sidebar-user-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #28a745, #1f7a8c);
+  color: white;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+.sidebar-user-info {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.sidebar-user-info strong {
+  color: white;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.sidebar-user-info span {
+  color: #9fb3c8;
+  font-size: 0.75rem;
+  margin-top: 2px;
+}
+.sidebar-logout {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 14px;
+  border-radius: 12px;
+  color: #fca5a5;
+  text-decoration: none;
+  font-weight: 700;
+  transition: 0.25s ease;
+}
+.sidebar-logout:hover {
+  background: rgba(220, 53, 69, 0.14);
+  color: #fecaca;
 }
