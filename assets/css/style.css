@@ -1480,3 +1480,28 @@ button:hover {
   background: rgba(220, 53, 69, 0.14);
   color: #fecaca;
 }
+.dashboard-layout {
+  display: flex;
+  min-height: 100vh;
+  height: 100vh; /* Fixe la hauteur totale à l'écran */
+  overflow: hidden; /* Empêche le scroll global du navigateur */
+}
+
+/* 2. Le Sidebar reste bloqué à gauche avec son propre défilement si besoin */
+.sidebar {
+  width: 260px; /* Ou la largeur actuelle de ton sidebar */
+  height: 100vh; /* Hauteur totale */
+  position: sticky;
+  top: 0;
+  left: 0;
+  flex-shrink: 0;
+  overflow-y: auto; /* Permet de scroller DANS le sidebar s'il est plus grand que l'écran */
+}
+
+/* 3. Le contenu principal prend tout le reste et devient la zone défilante */
+.main-content {
+  flex: 1;
+  height: 100vh;
+  overflow-y: auto; /* C'est cette zone qui va glisser/scroller */
+  padding: 20px; /* Ajuste le padding selon tes besoins */
+}

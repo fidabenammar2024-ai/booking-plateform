@@ -14,17 +14,17 @@
             Mon espace
         </div><a href="dashboard.php"
             class="<?php echo ($activePage === 'dashboard') ? 'active' : ''; ?>">
-            <span class="nav-icon">■</span>
+            <span class="nav-icon">🛠️</span>
             <span>Dashboard</span>
         </a>
         <a href="fields.php"
             class="<?php echo ($activePage === 'fields') ? 'active' : ''; ?>">
-            <span class="nav-icon">■</span>
+            <span class="nav-icon">🏟️</span>
             <span>Voir les terrains</span>
         </a>
         <a href="my_reservations.php"
             class="<?php echo ($activePage === 'reservations') ? 'active' : ''; ?>">
-            <span class="nav-icon">■</span>
+            <span class="nav-icon">📆</span>
             <span>Mes réservations</span>
         </a>
         <?php if (
@@ -36,22 +36,22 @@
             </div>
             <a href="admin_dashboard.php"
                 class="<?php echo ($activePage === 'admin_dashboard') ? 'active' : ''; ?>">
-                <span class="nav-icon">■■</span>
+                <span class="nav-icon">⚙️</span>
                 <span>Dashboard admin</span>
             </a>
             <a href="admin_reservations.php"
                 class="<?php echo ($activePage === 'admin_reservations') ? 'active' : ''; ?>">
-                <span class="nav-icon">■</span>
+                <span class="nav-icon">📆</span>
                 <span>Réservations</span>
             </a>
             <a href="admin_fields.php"
                 class="<?php echo ($activePage === 'admin_fields') ? 'active' : ''; ?>">
-                <span class="nav-icon">■■</span>
+                <span class="nav-icon">🏟️</span>
                 <span>Terrains</span>
             </a>
             <a href="admin_field_availability.php"
                 class="<?php echo ($activePage === 'admin_availability') ? 'active' : ''; ?>">
-                <span class="nav-icon">■</span>
+                <span class="nav-icon">⏱️</span>
                 <span>Horaires</span>
             </a>
         <?php endif; ?>

@@ -26,24 +26,20 @@ AND status != 'cancelled'";
         ]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-   public function cancelByUser($reservationId, $userId) {
-    // Vérifie que la réservation appartient bien à l'utilisateur et qu'elle n'est pas déjà annulée/passée
-    $sql = "UPDATE reservations 
-            SET status = 'cancelled' 
+    public function cancelByUser($reservationId, $userId)
+    {
+        $sql = "DELETE FROM reservations 
             WHERE id = :id 
-              AND user_id = :user_id 
-              AND status != 'cancelled' 
-              AND date >= CURDATE()";
-              
-    $stmt = $this->conn->prepare($sql);
-    $stmt->execute([
-        ':id' => $reservationId,
-        ':user_id' => $userId
-    ]);
+              AND user_id = :user_id";
 
-    // Retourne true si une ligne a effectivement été modifiée
-    return $stmt->rowCount() > 0;
-}
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute([
+            ':id' => $reservationId,
+            ':user_id' => $userId
+        ]);
+
+        return $stmt->rowCount() > 0;
+    }
     public function updateStatus($reservationId, $status)
     {
         $sql = "UPDATE reservations
