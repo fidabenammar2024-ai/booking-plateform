@@ -20,18 +20,23 @@ $sport = $_GET["sport"] ?? null;
 $fields = $fieldModel->getAll($sport);
 
 $message = "";
+$errorMessage = '';
 
 if (isset($_GET["error"])) {
-    if ($_GET["error"] === "empty_fields") {
-        $message = "Veuillez remplir tous les champs.";
-    } elseif ($_GET["error"] === "past_date") {
-        $message = "La date de réservation ne peut pas être dans le passé.";
-    } elseif ($_GET["error"] === "invalid_time") {
-        $message = "L'heure de fin doit être supérieure à l'heure de début.";
-    } elseif ($_GET["error"] === "not_available") {
-        $message = "Ce terrain est déjà réservé sur ce créneau.";
+    if ($_GET["error"] === "slot_no_longer_available") {
+        $errorMessage = "Ce créneau n'est plus disponible. Veuillez en choisir un autre.";
+    } elseif ($_GET["error"] === "field_closed") {
+        $errorMessage = "Ce terrain est fermé à cette date.";
+    } elseif ($_GET["error"] === "outside_opening_hours") {
+        $errorMessage = "Le créneau choisi est en dehors des horaires d'ouverture.";
+    } elseif ($_GET["error"] === "invalid_slot_duration") {
+        $errorMessage = "La durée du créneau sélectionné n'est pas valide.";
+    } elseif ($_GET["error"] === "invalid_slot") {
+        $errorMessage = "Le créneau sélectionné est invalide.";
+    } elseif ($_GET["error"] === "past_date" || $_GET["error"] === "past_time") {
+        $errorMessage = "La date ou l'heure choisie est déjà passée.";
     } elseif ($_GET["error"] === "reservation_failed") {
-        $message = "Erreur lors de la création de la réservation.";
+        $errorMessage = "Une erreur est survenue pendant la réservation.";
     }
 }
 ?>
@@ -54,11 +59,17 @@ if (isset($_GET["error"])) {
 
         <main class="main-content">
 
-
             <?php require_once "../views/layout/topbar.php"; ?>
 
             <section class="dashboard-card">
                 <h1>Terrains disponibles</h1>
+
+                <!-- Affichage du Toast d'erreur global (placé en haut sous le titre) -->
+                <?php if (!empty($errorMessage)) : ?>
+                    <div class="toast toast-error">
+                        <?php echo htmlspecialchars($errorMessage); ?>
+                    </div>
+                <?php endif; ?>
 
                 <?php if (!empty($message)): ?>
                     <p class="message"><?php echo htmlspecialchars($message); ?></p>
@@ -67,12 +78,12 @@ if (isset($_GET["error"])) {
                 <?php if (empty($fields)): ?>
                     <p class="message">Aucun terrain disponible pour le moment.</p>
                 <?php else: ?>
-                    <div class="filter-tabs"> <a href="fields.php" class="<?php echo empty($sport) ? 'active' : ''; ?>">
-                            Tous </a> <a href="fields.php?sport=football"
-                            class="<?php echo ($sport === 'football') ? 'active' : ''; ?>"> Football </a> <a
-                            href="fields.php?sport=basket" class="<?php echo ($sport === 'basket') ? 'active' : ''; ?>">
-                            Basket </a> <a href="fields.php?sport=tennis"
-                            class="<?php echo ($sport === 'tennis') ? 'active' : ''; ?>"> Tennis </a> </div>
+                    <div class="filter-tabs">
+                        <a href="fields.php" class="<?php echo empty($sport) ? 'active' : ''; ?>">Tous</a>
+                        <a href="fields.php?sport=football" class="<?php echo ($sport === 'football') ? 'active' : ''; ?>">Football</a>
+                        <a href="fields.php?sport=basket" class="<?php echo ($sport === 'basket') ? 'active' : ''; ?>">Basket</a>
+                        <a href="fields.php?sport=tennis" class="<?php echo ($sport === 'tennis') ? 'active' : ''; ?>">Tennis</a>
+                    </div>
 
                     <div class="fields-list">
                         <?php foreach ($fields as $field): ?>
@@ -100,13 +111,13 @@ if (isset($_GET["error"])) {
                             </div>
                         <?php endforeach; ?>
                     </div>
-
                 <?php endif; ?>
             </section>
 
         </main>
     </div>
 
+    <!-- Modal de réservation -->
     <div id="reservationModal" class="modal">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
@@ -119,18 +130,21 @@ if (isset($_GET["error"])) {
                 <input type="hidden" name="field_id" id="fieldId">
                 <label for="date">Date :</label>
                 <input type="date" id="date" name="date" required>
-                <label for="slot">Creneau disponible :</label>
 
+                <label for="slot">Créneau disponible :</label>
                 <select id="slot" name="slot" required disabled>
                     <option value="">Choisissez d’abord une date</option>
                 </select>
+
                 <p id="slotMessage" class="slot-message"></p>
+
                 <button type="submit" id="confirmReservationBtn" disabled>
-                    Confirmer la reservation
+                    Confirmer la réservation
                 </button>
             </form>
         </div>
     </div>
+
     <?php require_once __DIR__ . "/../views/layout/footer.php"; ?>
     <script src="../assets/js/script.js"></script>
 
