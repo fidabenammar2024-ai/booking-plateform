@@ -14,16 +14,32 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v6
 
+      - name: Create production database config
+        env:
+          DB_HOST: ${{ secrets.DB_HOST }}
+          DB_NAME: ${{ secrets.DB_NAME }}
+          DB_USERNAME: ${{ secrets.DB_USERNAME }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+        run: |
+          cat > config/database_config.php <<PHP
+          <?php
+
+          return [
+              'host' => '${DB_HOST}',
+              'dbname' => '${DB_NAME}',
+              'username' => '${DB_USERNAME}',
+              'password' => '${DB_PASSWORD}'
+          ];
+          PHP
+
       - name: Deploy website by FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.4.0
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-
           protocol: ftp
           port: 21
-
           local-dir: ./
           server-dir: ${{ secrets.FTP_SERVER_DIR }}
 
