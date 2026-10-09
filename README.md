@@ -1,4 +1,4 @@
-# SportBooking - Beginner PHP/MySQL Starter Project
+# TerrainGo - Beginner PHP/MySQL Starter Project
 
 This is a beginner-friendly starter project for a **sport field reservation platform**.
 It allows users to register, login, view sport fields, reserve a field, cancel reservations, and allows an administrator to manage fields and reservations.
