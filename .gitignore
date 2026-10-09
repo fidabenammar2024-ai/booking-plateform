@@ -3,3 +3,6 @@ config/local.php
 *.log
 .DS_Store
 Thumbs.db
+config/database_config.php
+logs/
+*.sql
