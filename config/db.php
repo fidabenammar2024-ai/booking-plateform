@@ -1,24 +1,27 @@
 <?php
 class Database
 {
-private $host = "localhost";
-private $db_name = "booking_sports";
-private $username = "root";
-private $password = "";
-public $conn;
-public function connect()
-{
-$this->conn = null;
-try {
-$this->conn = new PDO(
-"mysql:host=" . $this->host . ";dbname=" . $this->db_name . ";charset=utf8",
-$this->username,
-$this->password
-);
-$this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (PDOException $e) {
-echo "Erreur de connexion : " . $e->getMessage();
-}
-return $this->conn;
-}
+    public function connect()
+    {
+        $config = require __DIR__ . '/database_config.php';
+        try {
+            $conn = new PDO(
+                'mysql:host=' . $config['host']
+                    . ';dbname=' . $config['dbname']
+                    . ';charset=utf8mb4',
+                $config['username'],
+                $config['password']
+            );
+            $conn->setAttribute(
+                PDO::ATTR_ERRMODE,
+                PDO::ERRMODE_EXCEPTION
+            );
+            return $conn;
+        } catch (PDOException $e) {
+            error_log($e->getMessage());
+            die(
+                'Impossible de se connecter à la base de données.'
+            );
+        }
+    }
 }
