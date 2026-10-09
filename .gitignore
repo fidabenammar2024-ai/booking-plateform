@@ -6,3 +6,4 @@ Thumbs.db
 config/database_config.php
 logs/
 *.sql
+config/database_config.php
