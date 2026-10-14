@@ -1,3 +1,8 @@
+<?php
+echo htmlspecialchars(
+    $_SESSION["user_name"] ?? "Utilisateur"
+);
+?>
 <header class="topbar">
     <div class="topbar-left">
         <h3><?php echo htmlspecialchars($pageTitle ?? "Dashboard"); ?></h3>

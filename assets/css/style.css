@@ -1505,3 +1505,34 @@ button:hover {
   overflow-y: auto; /* C'est cette zone qui va glisser/scroller */
   padding: 20px; /* Ajuste le padding selon tes besoins */
 }
+.profile-form {
+  max-width: 650px;
+  margin: 25px auto 0;
+}
+.profile-form label {
+  display: block;
+  margin-bottom: 7px;
+  color: #243b53;
+  font-weight: 700;
+}
+.profile-form input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 13px 14px;
+  margin-bottom: 18px;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 0.95rem;
+}
+.profile-form input:focus {
+  outline: none;
+  border-color: #28a745;
+  box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.14);
+}
+.profile-password-card {
+  margin-top: 24px;
+}
+.profile-password-card h2 {
+  color: #102a43;
+}

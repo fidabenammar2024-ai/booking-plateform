@@ -1,3 +1,8 @@
+<?php
+echo htmlspecialchars(
+    $_SESSION["user_name"] ?? "Utilisateur"
+);
+?>
 <aside class="sidebar">
     <div class="sidebar-header">
         <div class="sidebar-logo">
@@ -83,6 +88,11 @@
             </span>
         </div>
     </div>
+    <a href="profile.php"
+        class="<?php echo ($activePage === 'profile') ? 'active' : ''; ?>">
+        <span class="nav-icon">■</span>
+        <span>Mon profil</span>
+    </a>
     <a href="logout.php" class="sidebar-logout">
         <span>■</span>
         <span>Déconnexion</span>
